@@ -46,6 +46,10 @@
 
 - [第一批高优先级论文精读](deep_readings/README.md)
 
+## 写作框架
+
+- [轴承数字孪生故障诊断论文写作框架](writing_framework/README.md)
+
 ## 横向资料
 
 - [DT 建模路线矩阵](docs/MODELING_MATRIX.md)
