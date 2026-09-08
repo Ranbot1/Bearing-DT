@@ -11,6 +11,7 @@
 | Zhao 2023 MSSP, virtual-real RUL | **未发现** | PRONOSTIA/实验数据路线 | Huddersfield 有 accepted manuscript，但未发现代码 |
 | Li 2023 IEEE TIM, multiscale evolution | **未发现** | — | 未发现官方实现 |
 | Qin 2024 KBS, inverse PINN | **未发现** | 论文称真实数据参与参数辨识 | 未发现官方实现 |
+| Li 2024 Information Fusion, DTa-DT | **未发现** | 两个公开 bearing datasets | 标题/方法名/作者/GitHub 检索未发现可确认官方仓库 |
 | Fang 2025 MSSP, DTDA | **未发现** | 自建试验台/模拟数据 | 作者主页列论文，但未链接代码 |
 | Cui 2025 RIE, mechanism-driven transfer | **未发现** | 论文 Data availability: on request | OA 正文未给 GitHub |
 | Ding 2026 IEEE TASE, dynamic+causal KD | **未发现** | — | 未发现官方仓库 |
