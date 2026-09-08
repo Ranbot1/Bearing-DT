@@ -361,13 +361,13 @@ Ma / Li / Zhang 三篇分别达到约 21–23 张 Figure 和 8–13 张 Table，
 
 而应按：
 
-[
+\[
 Reference
 +
 Observation
 +
 Interpretation
-]
+\]
 
 例如：
 
@@ -379,7 +379,7 @@ Interpretation
 
 这样：
 
-[
+\[
 正文
 ightarrow
 Figure
@@ -389,6 +389,6 @@ Table
 解释
 ightarrow
 下一节
-]
+\]
 
 才真正连起来。
