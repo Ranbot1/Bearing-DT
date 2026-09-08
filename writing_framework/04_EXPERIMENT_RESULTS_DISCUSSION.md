@@ -266,7 +266,7 @@ Twin parameters 扰动：
 
 推荐使用：
 
-[
+\[
 Question
 ightarrow
 Setup
@@ -278,7 +278,7 @@ Table
 Interpretation
 ightarrow
 Transition
-]
+\]
 
 并不是每个实验都必须同时有 Figure 和 Table；只有当二者承担不同职责时才成对出现。
 
