@@ -260,7 +260,74 @@ Twin parameters 扰动：
 
 ---
 
-# 3. Results 的标准段落结构
+# 3. Results 中正文—Figure—Table 的标准联动
+
+高质量结果小节不是“先放图表，再补两句描述”，而是按论证问题组织。
+
+推荐使用：
+
+[
+Question
+ightarrow
+Setup
+ightarrow
+Figure
+ightarrow
+Table
+ightarrow
+Interpretation
+ightarrow
+Transition
+]
+
+并不是每个实验都必须同时有 Figure 和 Table；只有当二者承担不同职责时才成对出现。
+
+### 典型配对 1 — Twin validation
+
+**Figure**：让读者看见 simulated / measured waveform、spectrum、time-frequency 的对应关系。  
+**Table**：给 characteristic-frequency error、MMD、modal error、statistical distance 等精确值。
+
+正文应先提出：
+
+> 为什么现在需要验证 Twin？
+
+图后指出：
+
+> 哪个物理现象被复现？
+
+表后指出：
+
+> 这种一致性在数值上有多大？
+
+最后再自然导向：
+
+> 因此这些 virtual data 是否足以进入后续诊断阶段。
+
+### 典型配对 2 — Main comparison
+
+**Table**：主 accuracy / F1 / mean±std。  
+**Figure**：confusion matrix、t-SNE/UMAP 或代表性 feature/spectrum。
+
+Table 回答：
+
+> 提升了多少？
+
+Figure 回答：
+
+> 改善具体发生在哪些类别/表示结构？
+
+正文不能把两者写成重复证据。
+
+### 典型配对 3 — Ablation / Robustness
+
+**Table**：删除模块或改变条件后，性能下降多少。  
+**Figure**：feature separability、sensitivity curve、noise/condition 下 representation 如何变化。
+
+Table 支持“该模块有效”，Figure 帮助解释“为什么可能有效”。
+
+---
+
+# 4. Results 的标准段落结构
 
 每个实验小节推荐四句逻辑：
 
@@ -284,9 +351,20 @@ Twin parameters 扰动：
 
 不要把解释全部推迟到 Discussion。
 
+在四句之外，若该小节同时包含 Figure 与 Table，可以扩展成：
+
+1. **目的句**：该实验验证哪个 claim；
+2. **设置句**：比较对象和条件；
+3. **Figure 观察句**：只描述最关键的视觉现象；
+4. **Table 定量句**：只摘 1–3 个支持该 claim 的数字，不逐格朗读；
+5. **解释句**：视觉和数值证据共同支持什么；
+6. **过渡句**：为什么下一小节自然需要继续验证另一个问题。
+
+这种写法使图表真正嵌入文章，而不是“图在一边、正文在另一边”。
+
 ---
 
-# 4. Discussion
+# 5. Discussion
 
 Discussion 与 Results 的区别：
 
@@ -363,7 +441,7 @@ What\ does\ it\ mean?
 
 ---
 
-# 5. Conclusions
+# 6. Conclusions
 
 Conclusion 不需要再次列完整方法。
 
