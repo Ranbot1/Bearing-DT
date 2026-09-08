@@ -45,6 +45,38 @@ Experimental\ Evidence
 
 一篇完整论文不能只证明其中一条。
 
+### 图表如何嵌入这两条证据链
+
+从高优先级精读样本中可以进一步蒸馏出一个稳定规律：
+
+[
+oxed{
+正文提出问题
+ightarrow
+Figure 给直观结构/现象
+ightarrow
+Table 给精确参数/数值
+ightarrow
+正文解释其意义
+ightarrow
+进入下一论证问题
+}
+]
+
+因此图表不是独立的“结果附件”，而是正文论证的一部分。
+
+- **结构/框架类 Figure**：回答“系统是什么、信息怎么流、故障怎么进入模型”；
+- **数据/参数类 Table**：回答“模型和实验到底用了什么”；
+- **Twin validation Figure/Table**：回答“虚拟模型为什么可信”；
+- **diagnosis Figure/Table**：回答“方法是否有效、哪里有效、为什么有效”。
+
+目前能完整核对正文编号的三篇代表论文中：
+- Ma 2023 MSSP：21 Figures + 9 Tables；
+- Li 2024 Information Fusion：22 Figures + 8 Tables；
+- Zhang 2025 Results in Engineering：23 Figures + 13 Tables。
+
+这些数字只反映**高物理建模密度论文的证据量感**，不是推荐配额。真正应遵循的是：每一个重要 claim 都有职责匹配的图表证据，而不是机械追求图表数量。
+
 ---
 
 ## 推荐的完整论文结构
