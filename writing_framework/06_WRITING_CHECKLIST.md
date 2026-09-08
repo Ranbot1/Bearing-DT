@@ -125,7 +125,25 @@
 
 ---
 
-# J. Reproducibility
+# J. Figure / Table / Text Coupling
+
+- [ ] 每张 Figure/Table 都对应一个明确 claim 或必要 protocol 信息。
+- [ ] 结构图用于解释系统/流程，而不是承担性能证明。
+- [ ] 参数表明确数值、单位和来源，不让正文反复列参数。
+- [ ] Twin validation 既有直观 Figure，也有适当的定量指标（若 claim 需要）。
+- [ ] 主结果优先用 Table 给精确数值，不靠柱状图代替可比较数字。
+- [ ] Confusion matrix / t-SNE 等 Figure 用来解释主结果，而不是替代主结果。
+- [ ] Ablation 的 Table 与解释性 Figure 不重复同一信息。
+- [ ] 图表出现前，正文已经说明“为什么需要看它”。
+- [ ] 图表之后，正文至少包含 Observation + Meaning，而不是只写“Fig. X shows ...”。
+- [ ] 正文没有逐行/逐列朗读 Table。
+- [ ] 每个结果小节结尾能自然过渡到下一论证问题。
+- [ ] 没有为了“看起来像顶刊”机械堆 20 张以上图。
+- [ ] Supplementary Material 承担次要图表，主文只保留核心证据链。
+
+---
+
+# K. Reproducibility
 
 - [ ] DOI / dataset links 准确。
 - [ ] parameter table 足以重建 simulator。
