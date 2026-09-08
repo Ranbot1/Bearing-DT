@@ -28,6 +28,7 @@
 | 2023 | [Research on rolling bearing virtual-real fusion life prediction with digital twin](papers/2023_Zhao_MSSP_VirtualRealRUL.md) | MSSP | 全寿命模拟 + CycleGAN | 未发现官方代码 | B+ |
 | 2023 | [A Digital Twin Model of Life-Cycle Rolling Bearing With Multiscale Fault Evolution](papers/2023_Li_TIM_MultiscaleEvolution.md) | IEEE TIM | 微观裂纹→剥落→宏观缺陷 | 未发现官方代码 | B |
 | 2024 | [Inverse physics-informed neural networks for digital twin-based bearing fault diagnosis under imbalanced samples](papers/2024_Qin_KBS_InversePINN.md) | Knowledge-Based Systems | inverse PINN 参数辨识 + 数据生成 | 未发现官方代码 | B+ |
+| 2024 | [Digital twin-assisted dual transfer: A novel information-model adaptation method for rolling bearing fault diagnosis](deep_readings/03_2024_Li_InformationFusion_Dual_Transfer.md) | Information Fusion | DT 信息迁移 + 模型迁移 | 未发现官方代码 | **精读** |
 | 2025 | [A digital twin-enabled domain adaptation network for cross-space fault diagnosis of roller bearings](papers/2025_Fang_MSSP_DTDA.md) | MSSP | 多体动力学 + Sim2Real DA | 未发现官方代码 | B+ |
 | 2025 | [Failure mechanism-driven multi-adversarial domain transfer learning for rolling bearing fault diagnosis](papers/2025_Cui_RIE_PhysicsTeacher.md) | Results in Engineering | **4-DOF physics teacher + KD** | 未发现官方代码 | **A** |
 | 2026 | [Elevating Interpretability in Bearing Fault Diagnosis: A Knowledge Distillation Framework Integrating Dynamic and Causal a Priori](papers/2026_Ding_TASE_DynamicCausalKD.md) | IEEE TASE | **dynamic prior + causal prior + KD** | 未发现官方代码 | B |
@@ -40,6 +41,10 @@
 - **A**：已获得可检索的正文级方法信息，能够记录方程/参数/实验/损失或完整 pipeline。
 - **B+**：官方摘要、方法段/机构 manuscript 信息足以还原主要技术路线，但仍有细节需要全文再次核查。
 - **B**：已核对官方摘要、highlights、论文元数据和相关作者/机构页面；暂不把无法核实的细节写成事实。
+
+## 精读入口
+
+- [第一批高优先级论文精读](deep_readings/README.md)
 
 ## 横向资料
 
