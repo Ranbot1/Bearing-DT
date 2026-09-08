@@ -419,6 +419,43 @@ Discussion 不要复制 Results。
 
 ---
 
+# 全文章节与图表职责的联动
+
+论文结构不应只按章节排列，还要让每一节承担对应的视觉/定量证据。
+
+| 正文阶段 | 正文回答的问题 | Figure 的主要职责 | Table 的主要职责 |
+|---|---|---|---|
+| Introduction / Related Work | 为什么需要这项研究？现有路线是什么？ | 必要时用概念图/技术路线图 | 文献比较表，可选 |
+| DT Modeling | Twin 建了什么？故障如何进入模型？ | 物理对象、坐标、接触、fault geometry、总体 DT 结构 | bearing / Twin 参数及来源 |
+| Twin Validation | Twin 是否可信？ | waveform、spectrum、envelope、time-frequency、sim-real distribution | characteristic-frequency error、MMD、modal/statistical error |
+| Diagnostic Method | Twin 如何进入诊断器？ | network / transfer / KD / DA 流程 | loss、network setting，必要时 |
+| Experimental Setup | 数据从哪来？协议是什么？ | test rig、sensor location、复杂 split protocol | speed/load/fault/sample counts、hyperparameters |
+| Main Results | 方法有没有用？ | confusion matrix / feature visualization | Accuracy / F1 / mean±std 主比较 |
+| Ablation / Robustness | 为什么有效？是否稳定？ | sensitivity curves、representation change | ablation / robustness 定量结果 |
+| Discussion | 结果意味着什么？适用边界在哪？ | 通常不新增主证据图 | 通常不新增主结果表 |
+
+由此形成一种自然的正文节奏：
+
+\[
+System
+ightarrow
+Physics
+ightarrow
+Twin Credibility
+ightarrow
+Diagnostic Interface
+ightarrow
+Protocol
+ightarrow
+Performance
+ightarrow
+Mechanism/Robustness
+\]
+
+不要出现“前半篇只讲网络、最后才补 Twin 验证”的倒序叙事。
+
+---
+
 # Data / Code Availability
 
 DT 论文尤其建议明确：
