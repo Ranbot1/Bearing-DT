@@ -436,7 +436,7 @@ Discussion 不要复制 Results。
 
 由此形成一种自然的正文节奏：
 
-[
+\[
 System
 ightarrow
 Physics
@@ -450,7 +450,7 @@ Protocol
 Performance
 ightarrow
 Mechanism/Robustness
-]
+\]
 
 不要出现“前半篇只讲网络、最后才补 Twin 验证”的倒序叙事。
 
