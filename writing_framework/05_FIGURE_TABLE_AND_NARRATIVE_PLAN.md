@@ -28,6 +28,13 @@
 
 目前可以完整核对正文 Figure/Table 编号的三篇代表作：
 
+对应精读：
+- [Ma 2023 MSSP](../deep_readings/05_2023_Ma_MSSP_HighFidelity_EMTL.md)
+- [Li 2024 Information Fusion](../deep_readings/03_2024_Li_InformationFusion_Dual_Transfer.md)
+- [Zhang 2025 Results in Engineering](../deep_readings/02_2025_Zhang_RIE_Physics_Teacher.md)
+- [Fang 2025 MSSP](../deep_readings/04_2025_Fang_MSSP_CrossSpace_DTDA.md)
+- [Ding 2026 IEEE TASE](../deep_readings/01_2026_Ding_TASE_Dynamic_Causal_KD.md)
+
 | Paper | Figures | Tables | 图表组织特点 |
 |---|---:|---:|---|
 | Ma 2023 MSSP | 21 | 9 | 大量图用于试验台建模、参数辨识、模型更新和 Twin validation，最后才进入诊断 |
