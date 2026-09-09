@@ -1,6 +1,6 @@
 # Reproduction Status
 
-Status: **PHYSICS_REPRODUCED_PARTIAL — R1 passed; R2 Fig.5 frequency evidence passed**
+Status: **PHYSICS_REPRODUCED — R1 passed; R2 mechanism gates passed; Teacher dataset pilot passed**
 
 Last update: 2026-09-09
 
@@ -28,8 +28,8 @@ Last update: 2026-09-09
 
 ## Not yet accepted
 
-- exact dual-impulse localized-spall function
-- paper-level Fig. 5 simulation reproduction
+- exact paper numerical parameters for the trailing-edge collision term
+- high-fidelity amplitude/resonance calibration to the physical rig
 - exact Fig. 7/9 conv channels/kernels
 - exact preprocessing/input representation
 - Paderborn data loader + manifest
@@ -45,7 +45,13 @@ R1 mechanism sanity is now accepted for:
 - speed scaling;
 - outer BPFO after correcting the load-zone angle.
 
-R2 is only a **partial pass**: the Fig.5 frequency-domain mechanism evidence is reproduced, but dual-impulse time morphology / amplitude / resonance fidelity are not yet accepted.
+R2 mechanism-level validation is now accepted:
+- Fig.5 BPFI frequency evidence: PASS;
+- dual-impulse DITS: PASS;
+- exit > entry high-frequency impulse: PASS;
+- no-exit-impact negative control: PASS.
+
+This remains a mechanism-level reconstruction, not a calibrated high-fidelity physical-rig twin.
 
 A fixed audit snapshot is now retained under `artifacts/audit_snapshots/20260909_6203_r1r2/`, including generated twin data, fault-band spectra, metrics and code-generated SVG figures.
 
@@ -53,12 +59,21 @@ The generated evidence used for this gate is now retained in:
 `artifacts/audit_snapshots/20260909_6203_r1r2/`
 so the signal values, spectra, figure, config, and hashes can be inspected independently.
 
-**Do not enable R3 Teacher pretraining until the three-class virtual dataset generator and per-class QA are completed.**
+Teacher dataset construction pilot is now accepted:
+- 18 raw windows, shape 18×2048;
+- normal / inner / outer balanced;
+- train / val / test balanced;
+- simulation-run-isolated splits;
+- train / val / test raw-value audit CSVs retained;
+- NPZ SHA-256 retained;
+- code-generated Teacher-window SVG retained.
+
+**R3 Teacher pretraining remains BLOCKED only on the paper-faithful input/preprocessing ambiguity.**
+
+See [PREPROCESSING_AUDIT.md](PREPROCESSING_AUDIT.md).
 
 ## Next coding milestone
 
-1. run the three-class generator for PU 6203 and save the manifest;
-2. run per-class frequency/mechanism QA on normal / inner / outer;
-3. verify the localized-spall dual-impulse time morphology against Fig. 4/Fig. 5;
-4. lock the exact network input/preprocessing from the paper;
-5. only then enable Teacher pretraining.
+1. recover Fig.7/Fig.9 input tensor and Conv details from stronger evidence if possible;
+2. if unavailable, create an explicitly named fallback track (not paper-confirmed);
+3. only then run Teacher pretraining and report 3-seed held-out simulated-domain performance.
