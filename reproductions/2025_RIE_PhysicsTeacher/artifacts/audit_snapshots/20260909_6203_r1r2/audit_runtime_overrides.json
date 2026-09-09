@@ -1,6 +1,8 @@
 {
   "simulation.duration_s": 0.35,
   "simulation.discard_initial_s": 0.05,
-  "git_signal_fs_hz": 4000,
-  "full_res_excerpt_s": 0.01
+  "retained_signal_checkpoint_fs_hz": 1000,
+  "retained_signal_checkpoint_duration_s": 0.10,
+  "spectral_analysis_source_fs_hz": 64000,
+  "spectral_analysis_retained_duration_s": 0.30
 }
