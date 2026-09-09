@@ -46,6 +46,9 @@ BPFI, BPFO, BSF, FTF
 
 对论文对应 6203 配置：
 
+- 论文 Eq. (6) / Fig. 5 给出的 inner-race reference 为 **123.24 Hz**；
+- 我们由 config geometry/speed 独立计算 theoretical BPFI；
+- 两者应首先在 rounding / geometry precision 范围内一致；
 - inner fault 的主要故障周期证据应落在理论 BPFI 邻域；
 - outer fault 的主要故障周期证据应落在理论 BPFO 邻域；
 - 允许 tolerance：**±2%**（第一阶段）；
@@ -102,7 +105,9 @@ f_{fault}propto f_r
 - [ ] segmentation 与 normalization 全部记录。
 - [ ] normalization statistics 只来自允许的 training data。
 - [ ] 实现 global + class-wise adversarial alignment。
-- [ ] 实现 physics-guided knowledge loss。
+- [ ] 实现 paper-confirmed MK-MMD physics-guided knowledge loss。
+- [ ] Feature extractor 满足已确认的 4 Conv + BN + CBAM + 128-d representation。
+- [ ] SGD=1e-4, batch=16, iterations=100, λm/λt/λk=1.0/0.05/10.0 作为 paper-faithful default。
 - [ ] 至少 3 seeds。
 - [ ] 与 ERM / DANN / MADA 等合理 baseline 同协议比较。
 
