@@ -50,6 +50,11 @@
 
 - [轴承数字孪生故障诊断论文写作框架](writing_framework/README.md)
 
+## 论文复现
+
+- [论文复现总目录与规范](reproductions/README.md)
+- [第一篇：2025 RIE Physics-Teacher 复现](reproductions/2025_RIE_PhysicsTeacher/README.md)
+
 ## 横向资料
 
 - [DT 建模路线矩阵](docs/MODELING_MATRIX.md)
