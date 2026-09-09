@@ -22,7 +22,7 @@
       "sha256": "ba22c75d1132fd9dfcba8fde31ec101d9012d71f71cf4db7dcadba3c8f7abb7e"
     }
   ],
-  "retained_evidence_sha256": {
+  "generation_side_sha256_before_text_normalization": {
     "data/signals_checkpoints.csv": "440bac05a83fbf72b8ad063ae04d28bd23d0d88373507763f55b8e5124f81f54",
     "figures/fault_frequency_audit.svg": "d1e21bfa8090a7fb2d4b16b2ab835b2c31167b945c5c6643b40fb6df5e49e9ef",
     "tables/spectra_0_500hz.csv": "17fdc977c91027e35e21ed0475c7845e94dbe05a3a2a28c7662b9945c642b128",
