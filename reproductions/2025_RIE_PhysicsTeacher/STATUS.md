@@ -1,6 +1,6 @@
 # Reproduction Status
 
-Status: **PARTIAL — R0 scaffold + R1 physics implementation started**
+Status: **PHYSICS_REPRODUCED_PARTIAL — R1 passed; R2 Fig.5 frequency evidence passed**
 
 Last update: 2026-09-09
 
@@ -40,7 +40,14 @@ Last update: 2026-09-09
 
 ## Current gate
 
-**Do not proceed to claim R3 Teacher reproduction until R1/R2 simulator evidence is saved and reviewed.**
+R1 mechanism sanity is now accepted for:
+- inner BPFI;
+- speed scaling;
+- outer BPFO after correcting the load-zone angle.
+
+R2 is only a **partial pass**: the Fig.5 frequency-domain mechanism evidence is reproduced, but dual-impulse time morphology / amplitude / resonance fidelity are not yet accepted.
+
+**Do not enable R3 Teacher pretraining until the three-class virtual dataset generator and per-class QA are completed.**
 
 ## Next coding milestone
 
