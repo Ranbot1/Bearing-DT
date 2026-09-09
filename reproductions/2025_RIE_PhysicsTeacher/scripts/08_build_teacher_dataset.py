@@ -138,8 +138,9 @@ def main():
     split_all = np.asarray(splits)
     run_all = np.asarray(run_ids)
 
+    npz_path = args.out / "teacher_windows_raw.npz"
     np.savez_compressed(
-        args.out / "teacher_windows_raw.npz",
+        npz_path,
         x=x_all,
         y=y_all,
         split=split_all,
@@ -155,6 +156,26 @@ def main():
         writer = csv.DictWriter(f, fieldnames=list(run_rows[0].keys()))
         writer.writeheader()
         writer.writerows(run_rows)
+
+    # Raw-value audit: retain the first 128 original 64-kHz samples from every
+    # generated window, grouped by split. This makes the stored manifests
+    # independently checkable without opening the NPZ binary.
+    audit_samples = min(128, window)
+    for split_name in ("train", "val", "test"):
+        audit_path = args.out / f"window_audit_{split_name}.csv"
+        with audit_path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(
+                ["sample_id", "label", "split", "run_id"]
+                + [f"x_{i}" for i in range(audit_samples)]
+            )
+            for i, row in enumerate(rows):
+                if row["split"] != split_name:
+                    continue
+                writer.writerow(
+                    [row["sample_id"], row["label"], split_name, row["run_id"]]
+                    + [float(v) for v in x_all[i, :audit_samples]]
+                )
 
     summary = {
         "dataset_id": dcfg["dataset"]["id"],
@@ -177,6 +198,11 @@ def main():
         "dataset_config_sha256": sha256_file(args.dataset_config),
         "input_transform_status": construction["input_transform"],
         "run_isolated_split": True,
+        "full_npz": {
+            "filename": npz_path.name,
+            "bytes": npz_path.stat().st_size,
+            "sha256": sha256_file(npz_path),
+        },
     }
     (args.out / "summary.json").write_text(
         json.dumps(summary, indent=2), encoding="utf-8"
@@ -197,6 +223,7 @@ def main():
     plt.legend()
     plt.tight_layout()
     fig.savefig(args.out / "teacher_window_examples.svg")
+    fig.savefig(args.out / "teacher_window_examples_compact.svg")
     fig.savefig(args.out / "teacher_window_examples.png", dpi=180)
     plt.close(fig)
 
