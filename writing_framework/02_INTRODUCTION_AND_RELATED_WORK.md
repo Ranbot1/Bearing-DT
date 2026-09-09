@@ -1,10 +1,10 @@
-# 02 — Introduction 与 Related Work 写法
+# 02 — 引言与相关工作写法
 
 ---
 
-# 一、Introduction：五段式问题链
+# 一、引言（Introduction）：五段式问题链
 
-轴承 DT 论文的 Introduction 最重要的是**逐层收窄问题**，而不是堆 digital twin 的定义。
+轴承 DT 论文的 Introduction 最重要的是**逐层收窄问题**，而不是堆叠 digital twin 的定义。
 
 ---
 
@@ -15,6 +15,7 @@
 > 建立任务的重要性。
 
 常见内容：
+
 - rolling bearing 是关键旋转部件；
 - failure 会导致 downtime / safety / maintenance cost；
 - vibration-based intelligent diagnosis 具有实际价值。
@@ -24,7 +25,7 @@
 段末把问题落到：
 
 \[
-reliable\ bearing\ fault\ diagnosis
+可靠的轴承故障诊断
 \]
 
 ---
@@ -33,9 +34,10 @@ reliable\ bearing\ fault\ diagnosis
 
 功能：
 
-> 解释为什么已有深度学习不够。
+> 解释为什么已有深度学习还不够。
 
 通常讨论：
+
 - labeled fault data scarcity；
 - imbalanced samples；
 - variable operating conditions；
@@ -49,9 +51,9 @@ reliable\ bearing\ fault\ diagnosis
 逻辑：
 
 \[
-Deep\ Learning\ Success
+深度学习取得成功
 \rightarrow
-Data/Generalization\ Limitation
+数据与泛化限制
 \]
 
 ---
@@ -63,6 +65,7 @@ Data/Generalization\ Limitation
 > 从前一段的问题自然引出 DT。
 
 介绍 Twin 能提供：
+
 - physics-based virtual data；
 - controllable fault states；
 - virtual experiments；
@@ -78,6 +81,7 @@ Digital\ model \neq Real\ machine
 \]
 
 因此还存在：
+
 - modeling error；
 - parameter uncertainty；
 - distribution discrepancy；
@@ -91,7 +95,7 @@ Digital\ model \neq Real\ machine
 
 功能：
 
-> 真正建立论文 gap。
+> 真正建立论文的研究缺口（research gap）。
 
 这是 Introduction 最重要的一段。
 
@@ -100,32 +104,38 @@ Digital\ model \neq Real\ machine
 ### 路线 A — 高保真数字孪生
 
 优点：
+
 - physical consistency 强。
 
-不足可能是：
-- parameter identification difficult；
-- costly test/FE calibration；
-- computational burden。
+可能的不足：
 
-### 路线 B — virtual-real data fusion
+- parameter identification 困难；
+- test / FE calibration 成本高；
+- computational burden 大。
+
+### 路线 B — 虚实数据融合
 
 优点：
+
 - 减少 distribution discrepancy。
 
-不足可能是：
-- real data dependence；
-- fusion quality difficult to verify。
+可能的不足：
 
-### 路线 C — DT + transfer / diagnosis network
+- 对 real data 有依赖；
+- fusion quality 难以验证。
+
+### 路线 C — DT + 迁移/诊断网络
 
 优点：
-- 提升 virtual knowledge utilization。
 
-不足可能是：
-- downstream method improves accuracy but twin contribution is insufficiently isolated；
+- 提高 virtual knowledge utilization。
+
+可能的不足：
+
+- downstream method 提高了 accuracy，但 Twin 的独立贡献没有被充分隔离；
 - digital-space validity 与 diagnostic utility 经常混在一起验证。
 
-这一段末尾必须收束成**一个明确 research gap**。
+这一段末尾必须收束成**一个明确的 research gap**。
 
 ---
 
@@ -133,70 +143,70 @@ Digital\ model \neq Real\ machine
 
 功能：
 
-> 给出 paper objective 和 contributions。
-
-结构：
+> 给出论文目标和贡献。
 
 ### 先给一句总体方案
 
 只说：
 
 \[
-Problem
+问题
 \rightarrow
-Proposed\ framework
+所提框架
 \rightarrow
-Expected\ role
+预期作用
 \]
 
-不要进入公式。
+不要在这里进入公式细节。
 
-### 再列 contributions
+### 再列贡献（Contributions）
 
 建议 2–4 条。
 
 高质量 contribution 的组织原则：
 
-1. **Modeling contribution**
-2. **Methodological contribution**
-3. **Experimental / validation contribution**
+1. **建模贡献（Modeling contribution）**
+2. **方法贡献（Methodological contribution）**
+3. **实验/验证贡献（Experimental / validation contribution）**
 
 不要写：
+
 - “大量实验表明方法有效”作为唯一贡献；
 - “首次使用某某 CNN”这类弱创新；
 - 与摘要结果矛盾的夸张表述。
 
 ### 最后一段
 
-介绍 Section 2–Conclusion 的组织。
+介绍 Section 2 到 Conclusion 的论文组织结构。
 
 ---
 
-# 二、Related Work：不要按年份流水账
+# 二、相关工作（Related Work）：不要按年份流水账
 
 推荐按照**研究问题**分类，而不是作者年代分类。
 
 ---
 
-## 2.1 Bearing dynamic modeling and fault simulation
+## 2.1 轴承动力学建模与故障仿真
 
 这一节回答：
 
 > 轴承故障如何被物理建模？
 
-可以组织：
+可以组织为：
 
 \[
-Kinematics
+运动学
 \rightarrow
-Contact\ Dynamics
+接触动力学
 \rightarrow
-Localized\ Defect
+局部缺陷
 \rightarrow
-Vibration\ Response
+振动响应
 \]
 
 常见内容：
+
 - fault characteristic frequencies；
 - Hertz contact；
 - time-varying stiffness；
@@ -205,32 +215,35 @@ Vibration\ Response
 - FE / housing / support model；
 - defect evolution。
 
-这一节的结尾应指出：
+这一节结尾应指出：
 
 > physical simulation 为 DT 提供基础，但 simulation 本身并不自动等于可信 Twin。
 
 ---
 
-## 2.2 Digital twin modeling for rolling bearings
+## 2.2 滚动轴承数字孪生建模
 
 按照 Twin 深度分类：
 
-### Type 1 — Mechanism/response model
+### 类型 1 — 机制/响应模型（Mechanism/response model）
 
 输出：
+
 - virtual vibration；
 - fault response。
 
-### Type 2 — Calibrated/high-fidelity twin
+### 类型 2 — 校准/高保真 Twin（Calibrated/high-fidelity twin）
 
 增加：
+
 - parameter identification；
 - FE/modal updating；
 - measured-data calibration。
 
-### Type 3 — Dynamic/state twin
+### 类型 3 — 动态/状态 Twin（Dynamic/state twin）
 
 增加：
+
 - online updating；
 - defect evolution；
 - health state / RUL。
@@ -239,41 +252,41 @@ Vibration\ Response
 
 ---
 
-## 2.3 Digital-twin-assisted fault diagnosis
+## 2.3 数字孪生辅助故障诊断
 
 可按照 Twin 的作用分类：
 
-### Data generation
+### 数据生成
 
 \[
 DT\rightarrow Virtual\ Samples
 \]
 
-### Virtual-real fusion
+### 虚实融合
 
 \[
 Virtual + Real \rightarrow Fused\ Data
 \]
 
-### Transfer/domain adaptation
+### 迁移/域适配
 
 \[
 Digital\ Domain \rightarrow Physical\ Domain
 \]
 
-### Teacher / prior guidance
+### Teacher / 先验引导
 
 \[
 Physics\ Prior \rightarrow Diagnostic\ Model
 \]
 
-### Online monitoring / state repair
+### 在线监测/状态修复
 
 \[
 Twin\ State \leftrightarrow Real\ Observation
 \]
 
-这样能把不同论文放到同一逻辑地图。
+这样可以把不同论文放进同一张逻辑地图。
 
 ---
 
@@ -286,6 +299,7 @@ Twin\ State \leftrightarrow Real\ Observation
 ### 句 2–4 — 选 2–4 篇代表工作
 
 只说：
+
 - 核心方法；
 - 解决的具体问题。
 
@@ -305,13 +319,13 @@ Twin\ State \leftrightarrow Real\ Observation
 
 回答：
 
-> 为什么问题重要？为什么当前还没解决？
+> 为什么问题重要？为什么当前还没有解决？
 
 ### Related Work
 
 回答：
 
-> 学术界已经形成哪些技术路线？它们之间什么关系？
+> 学术界已经形成哪些技术路线？它们之间是什么关系？
 
 如果期刊篇幅有限，可以把 Related Work 压缩成 Introduction 中 2–3 个文献段落，但逻辑分类仍应保留。
 
@@ -334,9 +348,9 @@ Twin\ State \leftrightarrow Real\ Observation
 
 ## 失败 1
 
-“Digital twin has many advantages...” 写半页概念史。
+用半页篇幅介绍“Digital twin 有很多优势……”的概念史。
 
-问题：与 bearing diagnosis gap 没建立联系。
+问题：没有与 bearing diagnosis gap 建立联系。
 
 ## 失败 2
 
@@ -359,4 +373,3 @@ Related Work 只夸已有工作，没有指出局限。
 最好的目标是让读者在读到 Introduction 最后一段前，已经自然形成：
 
 > “这个问题确实还需要一篇这样的论文。”
-
