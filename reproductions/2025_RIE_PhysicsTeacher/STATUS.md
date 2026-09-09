@@ -47,6 +47,8 @@ R1 mechanism sanity is now accepted for:
 
 R2 is only a **partial pass**: the Fig.5 frequency-domain mechanism evidence is reproduced, but dual-impulse time morphology / amplitude / resonance fidelity are not yet accepted.
 
+A fixed audit snapshot is now retained under `artifacts/audit_snapshots/20260909_6203_r1r2/`, including generated twin data, fault-band spectra, metrics and code-generated SVG figures.
+
 The generated evidence used for this gate is now retained in:
 `artifacts/audit_snapshots/20260909_6203_r1r2/`
 so the signal values, spectra, figure, config, and hashes can be inspected independently.
