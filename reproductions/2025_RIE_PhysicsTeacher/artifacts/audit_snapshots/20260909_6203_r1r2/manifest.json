@@ -1,33 +1,40 @@
 {
   "snapshot_id": "20260909_6203_r1r2",
   "source_repo_commit": "80e59bceef75dcae37686d9f3743fc584f133963",
-  "base_config_sha256": "76675ae02cd335ad005b12a9ad73b4f73110a0e4fbd98bcdaa2db7754aeb9c74",
-  "full_resolution_generated_binaries_not_committed": [
-    {
-      "class": "normal",
-      "filename": "normal.npz",
-      "bytes": 741754,
-      "sha256": "2dda91464caf53bbc07748d2b303d79cd5e7d7cd853304e27cdfb6787a04034d"
-    },
-    {
-      "class": "inner",
-      "filename": "inner.npz",
-      "bytes": 783919,
-      "sha256": "e24ce351e2a7aefec565540c77b836cd507e7b0b97c0009fc9394ec50f02f9f0"
-    },
-    {
-      "class": "outer",
-      "filename": "outer.npz",
-      "bytes": 781676,
-      "sha256": "ba22c75d1132fd9dfcba8fde31ec101d9012d71f71cf4db7dcadba3c8f7abb7e"
-    }
-  ],
-  "generation_side_sha256_before_text_normalization": {
-    "data/signals_checkpoints.csv": "440bac05a83fbf72b8ad063ae04d28bd23d0d88373507763f55b8e5124f81f54",
-    "figures/fault_frequency_audit.svg": "d1e21bfa8090a7fb2d4b16b2ab835b2c31167b945c5c6643b40fb6df5e49e9ef",
-    "tables/spectra_0_500hz.csv": "17fdc977c91027e35e21ed0475c7845e94dbe05a3a2a28c7662b9945c642b128",
-    "tables/class_metrics.csv": "fb48a6145eb83a84c50c116d6dd1166a8e11e874b26a183d6162dd769927ad1b",
-    "tables/characteristic_frequencies.csv": "8c72f28c22b47eeb7166d771b6f270549ac503d4b89f2a594eb704c90201d2ee",
-    "config_snapshot.yaml": "76675ae02cd335ad005b12a9ad73b4f73110a0e4fbd98bcdaa2db7754aeb9c74"
+  "sampling": {
+    "simulation_hz": 64000,
+    "retained_full_interval_hz": 1000,
+    "retained_full_interval_s": [0.05, 0.35],
+    "retained_raw_excerpt_hz": 64000,
+    "retained_raw_excerpt_s": [0.05, 0.051]
+  },
+  "characteristic_frequencies_hz": {
+    "shaft_hz": 25.0,
+    "bpfi_hz": 123.6842105263158,
+    "bpfo_hz": 76.31578947368422,
+    "bsf_hz": 49.817251461988306,
+    "ftf_hz": 9.539473684210527
+  },
+  "retained_files_sha256": {
+    "data/signals_1khz/part_01.csv": "dbf62941591e26866ff9f9740ccf20fc9d5e5cb309b7eaed70b04371a7ff0ed3",
+    "data/signals_1khz/part_02.csv": "8c5c5a501a70a157d57c5a060912d65851fbb970315b2da2fa9836c806065861",
+    "data/signals_1khz/part_03.csv": "8535f354a8074ccbe16e684e37e8b884312d7f53c36e833f95a00f3abaf8d6f2",
+    "data/signals_1khz/part_04.csv": "7f0a5ead96d9c397025191c37c45fffccca1f5dc26dec57910b6ef8b81b43721",
+    "data/signals_1khz/part_05.csv": "723ad0dd3c4b1cb6272ae414a029648d2509bb174bc3c431c226ec24e02fcd15",
+    "data/signals_1khz/part_06.csv": "d4040aa94b6f734052608ee62e4178f244d2041b5c61178d1aa414b1ae38ee2b",
+    "data/signals_1khz/part_07.csv": "bb28871fe1d8851060c8f5426f4b6dd99fd285951db5611ca64d671096b5e973",
+    "data/signals_64khz_excerpt_1ms.csv": "de70e1687aa54f3dab95617b1ad08aa878b47e8ac90ce1789f777bc4602cc179",
+    "tables/spectra_fault_band_60_140hz.csv": "397c923f85ee4d83d171e84b7704aa0c2240ed49b0cbd1484d76c1961a20de1e",
+    "tables/class_metrics.csv": "dcd03b8705f956db9459a388455ad09db8b7f5b0a8cb44606ea2c9e7074def7d",
+    "tables/characteristic_frequencies.csv": "f8253c6424c7de28f511e82360d81d4c5af4b05b5c4343119d4e637b6b77424a",
+    "figures/class_envelope_comparison.svg": "2f0b05cae9f3a685c9b1a41ab2e9e505ca04cccc6d0cadbe34f97c93c4513bfe",
+    "figures/inner_envelope_spectrum.svg": "1a42dd30f3fb2d14256aa1c18467dbb1ea17e70aa92cf17b5a5e635fed3b165f",
+    "figures/inner_raw_spectrum.svg": "9bf83597685991924a1633e711d642f82b01650aa543407bd0f64830db37b5f5",
+    "figures/inner_time_domain.svg": "639da64ff5e4fd209892c1cf636d475d9e759f96d1fababbdc1d29b6d938eacc"
+  },
+  "full_resolution_npz_generated_same_run": {
+    "normal.npz": "2dda91464caf53bbc07748d2b303d79cd5e7d7cd853304e27cdfb6787a04034d",
+    "inner.npz": "e24ce351e2a7aefec565540c77b836cd507e7b0b97c0009fc9394ec50f02f9f0",
+    "outer.npz": "ba22c75d1132fd9dfcba8fde31ec101d9012d71f71cf4db7dcadba3c8f7abb7e"
   }
 }
