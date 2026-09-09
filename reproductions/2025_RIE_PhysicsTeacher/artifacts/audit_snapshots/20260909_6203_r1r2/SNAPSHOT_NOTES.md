@@ -1,26 +1,28 @@
-# Snapshot-specific interpretation
+# 固定快照说明
 
-This fixed Git snapshot is intentionally shorter than the longer R1/R2 run described in the main validation report.
+这个固定 Git 快照故意比主验收报告中的长时 R1/R2 运行更短。
 
-## Snapshot window
+## 快照时间窗
 
-- simulation duration: 0.35 s
-- discarded transient: 0.05 s
-- retained full-resolution analysis interval: 0.30 s
-- sampling rate used for spectral analysis: 64 kHz
-- periodogram bin spacing: approximately 3.33 Hz
+- 模拟总时长：0.35 s
+- 丢弃初始瞬态：0.05 s
+- 保留的全分辨率分析区间：0.30 s
+- 频谱分析采样率：64 kHz
+- periodogram 频率 bin 间隔：约 3.33 Hz
 
-Because the retained interval is short, the raw spectrum has coarser frequency resolution than the longer validation run.
+由于保留区间较短，raw spectrum 的频率分辨率低于长时验收运行。
 
-## Snapshot metrics
+## 快照指标
 
-From `tables/class_metrics.csv`:
+来自 `tables/class_metrics.csv`：
 
-| Class | Theory | Raw peak | Raw error | Envelope peak | Envelope error |
+| 类别 | 理论频率 | Raw 峰值 | Raw 误差 | Envelope 峰值 | Envelope 误差 |
 |---|---:|---:|---:|---:|---:|
 | Inner | BPFI 123.684 Hz | 125.468 Hz | 1.442% | 123.756 Hz | 0.058% |
 | Outer | BPFO 76.316 Hz | 76.676 Hz | 0.472% | 76.287 Hz | 0.037% |
 
-Both remain within the R1 mechanism-level ±2% acceptance band.
+两者都仍处于 R1 机制级验收的 ±2% 区间内。
 
-The longer R1/R2 validation report uses a longer stable signal and therefore obtains a more precise interpolated raw-spectrum estimate. The fixed Git snapshot exists for **artifact auditability**, not to replace the longer-run metrics.
+长时 R1/R2 验收报告使用更长的稳定信号，因此能够得到更精确的 raw-spectrum 插值峰值估计。
+
+这个固定 Git 快照的目的主要是保证**产物可审计性**，而不是替代长时运行得到的更精确指标。

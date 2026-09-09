@@ -1,13 +1,13 @@
-# 2025 Results in Engineering — Physics-Teacher Reproduction
+# 2025 Results in Engineering — Physics-Teacher 复现
 
-## Paper
+## 论文
 
 **Failure mechanism-driven multi-adversarial domain transfer learning for rolling bearing fault diagnosis**
 
-- Journal: Results in Engineering, 27 (2025), 106165
-- DOI: https://doi.org/10.1016/j.rineng.2025.106165
-- Official code: **截至 2026-09-09 未发现**
-- Reproduction status: **PHYSICS_REPRODUCED — R1/R2 mechanism gates passed; Teacher dataset pilot passed**
+- 期刊：Results in Engineering, 27 (2025), 106165
+- DOI：https://doi.org/10.1016/j.rineng.2025.106165
+- 官方代码：**截至 2026-09-09 未发现**
+- 当前复现状态：**PHYSICS_REPRODUCED — R1/R2 机制级关口已通过；Teacher 数据集 pilot 已通过**
 
 ## 为什么第一篇复现它
 
@@ -15,23 +15,23 @@
 
 论文主链：
 
-```
-4-DOF bearing dynamics
+```text
+4-DOF 轴承动力学
         ↓
-simulated fault vibration
+模拟故障振动
         ↓
-pretrained physics teacher
+预训练 physics teacher
         ↓
-knowledge constraint
+知识约束
         +
-multi-adversarial domain transfer
+多对抗域迁移
         ↓
-real bearing diagnosis
+真实轴承故障诊断
 ```
 
 ## 当前复现范围
 
-### 已开始实现
+### 已实现
 
 - [x] 标准化复现目录
 - [x] 论文证据台账
@@ -41,19 +41,19 @@ real bearing diagnosis
 - [x] inner / outer localized defect geometry hook
 - [x] bearing characteristic frequencies
 - [x] simulator smoke tests
-- [x] normal / inner / outer virtual-data generator
-- [x] paper-oriented time/frequency-domain evaluator
+- [x] normal / inner / outer 虚拟数据生成器
+- [x] 面向论文 Fig. 5 的时域/频域评估器
 - [x] R1 inner BPFI + speed-scaling validation
-- [x] outer load-zone configuration failure discovered and corrected
+- [x] 发现并修正 outer load-zone 配置错误
 - [x] dual-impulse DITS + trailing-edge collision mechanism validation
 - [x] no-exit-impact negative control
-- [x] run-isolated PU Teacher pilot dataset construction
-- [x] train / val / test raw-window audit retention
+- [x] run-isolated PU Teacher pilot 数据集构造
+- [x] train / val / test raw-window 审计数据留存
 - [x] Teacher / domain-transfer 网络接口骨架
 
 ### 尚未宣称完成
 
-- [x] Fig.5 核心 inner-race frequency-domain mechanism evidence
+- [x] Fig. 5 核心 inner-race frequency-domain mechanism evidence
 - [x] R2 dual-impulse mechanism gate
 - [ ] Paderborn transfer task 完整复现
 - [ ] HUST transfer task 完整复现
@@ -70,9 +70,9 @@ pytest -q
 python scripts/01_validate_simulator.py --config configs/paper_6203.yaml
 ```
 
-## 目录
+## 目录结构
 
-```
+```text
 configs/
   paper_6203.yaml
 
@@ -108,21 +108,24 @@ results/
 
 当前版本中，**论文没有公开或尚未核实的动力学参数一律标记为 INFERRED**。因此当前 simulator 首先是“方程结构复现 + 物理 sanity check”，不是已经验收的 paper-level numerical reproduction。
 
-当前 R1/R2 报告：
-- [R1_R2_SIGNAL_VALIDATION_20260909.md](reports/R1_R2_SIGNAL_VALIDATION_20260909.md)
-- [Dual-impulse R2 audit](artifacts/audit_snapshots/20260909_dual_impulse_r2/README.md)
+当前 R1/R2 报告与审计入口：
+
+- [R1/R2 信号验收报告](reports/R1_R2_SIGNAL_VALIDATION_20260909.md)
+- [Dual-impulse R2 审计](artifacts/audit_snapshots/20260909_dual_impulse_r2/README.md)
 - [PU Teacher pilot v1](artifacts/teacher_pilots/pu_6203_teacher_pilot_v1/README.md)
-- [Input / preprocessing audit](PREPROCESSING_AUDIT.md)
+- [输入与预处理审计](PREPROCESSING_AUDIT.md)
 
 可直接核验的代码生成产物：
-- [20260909_6203_r1r2 audit snapshot](artifacts/audit_snapshots/20260909_6203_r1r2/README.md)
-  - generated signal checkpoints
-  - full 0–500 Hz spectral table
-  - per-class metrics
-  - generated SVG figure
-  - config + SHA-256 provenance
 
-见：
-- [REPRODUCTION_CONTRACT.md](REPRODUCTION_CONTRACT.md)
-- [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md)
-- [EVIDENCE_LEDGER.md](EVIDENCE_LEDGER.md)
+- [20260909_6203_r1r2 审计快照](artifacts/audit_snapshots/20260909_6203_r1r2/README.md)
+  - 生成的信号检查点；
+  - 完整 0–500 Hz 频谱表；
+  - 各类别指标；
+  - 代码生成 SVG 图；
+  - config + SHA-256 provenance。
+
+相关规范：
+
+- [复现契约](REPRODUCTION_CONTRACT.md)
+- [验收标准](ACCEPTANCE_CRITERIA.md)
+- [证据台账](EVIDENCE_LEDGER.md)
