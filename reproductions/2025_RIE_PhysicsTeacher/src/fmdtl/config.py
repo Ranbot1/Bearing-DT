@@ -32,6 +32,7 @@ def build_from_config(cfg: dict):
         pitch_diameter_m=float(b["pitch_diameter_m"]),
         contact_angle_rad=np.deg2rad(float(b["contact_angle_deg"])),
         shaft_speed_rad_s=2.0 * pi * float(b["shaft_speed_rpm"]) / 60.0,
+        initial_ball_angle_rad=np.deg2rad(float(b.get("initial_ball_angle_deg", 0.0))),
     )
     dynamics = DynamicParameters(**{k: float(v) for k, v in d.items()})
     fault = FaultParameters(
@@ -42,6 +43,9 @@ def build_from_config(cfg: dict):
         initial_inner_fault_angle_rad=np.deg2rad(
             float(f["initial_inner_fault_angle_deg"])
         ),
+        profile=f.get("profile", "half_cosine"),
+        exit_impact_force_n=float(f.get("exit_impact_force_n", 0.0)),
+        exit_impact_duration_s=float(f.get("exit_impact_duration_s", 8.0e-5)),
     )
     simulation = SimulationParameters(
         duration_s=float(s["duration_s"]),
