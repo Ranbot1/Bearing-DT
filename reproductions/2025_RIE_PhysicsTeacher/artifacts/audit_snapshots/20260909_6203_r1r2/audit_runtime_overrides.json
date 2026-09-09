@@ -1,0 +1,6 @@
+{
+  "simulation.duration_s": 0.35,
+  "simulation.discard_initial_s": 0.05,
+  "git_signal_fs_hz": 4000,
+  "full_res_excerpt_s": 0.01
+}
