@@ -22,7 +22,7 @@ This directory retains **code-generated** artifacts so the R1/R2 mechanism claim
 
 - `config_snapshot.yaml`: base simulator configuration.
 - `audit_runtime_overrides.json`: short fixed audit-run settings.
-- `manifest.json`: hashes for retained evidence and for the full-resolution NPZ files generated in the same run.
+- `manifest.json`: generation-side SHA-256 provenance, including the full-resolution NPZ files generated in the same run. Text-file line-ending normalization by Git may change the byte-level hash after commit.
 
 The same run generated full-resolution `normal.npz`, `inner.npz`, and `outer.npz`. Their SHA-256 values are preserved in `manifest.json`. They are reproducible with:
 
