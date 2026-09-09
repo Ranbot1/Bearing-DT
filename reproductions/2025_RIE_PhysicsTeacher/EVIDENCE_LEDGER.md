@@ -85,7 +85,23 @@ Table 1 中 6203 的 “Bearing Speed” 与 Eq. (6)/PU Setting 0 的约 1500 rp
 - PU transfer condition 以 Table 3 的 **1500 rpm** 为准；
 - 不用 Table 1 的 speed 字段覆盖实验工况。
 
-## F. 下一步证据补齐
+## F. Reproduction-derived evidence
+
+以下不是论文事实，而是当前代码的验收结果：
+
+- 当前 6203 + 1500 rpm config 独立计算 BPFI = **123.6842 Hz**；
+- 论文 Fig.5 reference = **123.24 Hz**，二者差约 0.36%；
+- 当前 inner simulation raw-spectrum interpolated peak = **123.561 Hz**；
+- envelope audit peak = **123.650 Hz**；
+- 900 rpm 时 envelope peak = **74.200 Hz**，与 1500 rpm 峰值比约 0.60008；
+- 初始 outer angle 270 deg 落在当前坐标系非承载区，outer simulation 与 normal 相同；
+- outer angle 90 deg（INFERRED loaded-zone center）后，envelope peak = **76.304 Hz**，接近理论 BPFO 76.3158 Hz；
+- integration max step 从 1/(4fs) 放宽到 1/fs 时，0.1 s inner waveform correlation = **0.9999999988**，relative RMSE/std = **4.93e-5**。
+
+详见：
+[reports/R1_R2_SIGNAL_VALIDATION_20260909.md](reports/R1_R2_SIGNAL_VALIDATION_20260909.md)
+
+## G. 下一步证据补齐
 
 优先继续核对：
 

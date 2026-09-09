@@ -32,13 +32,15 @@ fault:
   type: "inner"
   depth_m: 5.0e-5
   angular_width_deg: 6.0
-  outer_fault_angle_deg: 270.0
+  # INFERRED: current load direction puts the loaded-zone center near +90 deg.
+  outer_fault_angle_deg: 90.0
   initial_inner_fault_angle_deg: 0.0
 
 simulation:
   duration_s: 1.0
   output_fs_hz: 64000
-  integration_max_step_s: 3.90625e-6
+  # INFERRED numerical setting; validated against 1/4-sample max step.
+  integration_max_step_s: 1.5625e-5
   rtol: 1.0e-7
   atol: 1.0e-9
   discard_initial_s: 0.1

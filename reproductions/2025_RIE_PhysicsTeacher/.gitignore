@@ -10,6 +10,7 @@ build/
 data/raw/
 data/processed/
 data/cache/
+data/generated/
 
 results/**/*
 !results/README.md

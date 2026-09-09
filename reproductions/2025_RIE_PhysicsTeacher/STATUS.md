@@ -1,6 +1,6 @@
 # Reproduction Status
 
-Status: **PARTIAL — R0 scaffold + R1 physics implementation started**
+Status: **PHYSICS_REPRODUCED_PARTIAL — R1 passed; R2 Fig.5 frequency evidence passed**
 
 Last update: 2026-09-09
 
@@ -40,11 +40,19 @@ Last update: 2026-09-09
 
 ## Current gate
 
-**Do not proceed to claim R3 Teacher reproduction until R1/R2 simulator evidence is saved and reviewed.**
+R1 mechanism sanity is now accepted for:
+- inner BPFI;
+- speed scaling;
+- outer BPFO after correcting the load-zone angle.
+
+R2 is only a **partial pass**: the Fig.5 frequency-domain mechanism evidence is reproduced, but dual-impulse time morphology / amplitude / resonance fidelity are not yet accepted.
+
+**Do not enable R3 Teacher pretraining until the three-class virtual dataset generator and per-class QA are completed.**
 
 ## Next coding milestone
 
-1. reproduce Fig. 5 inner-race simulation around 123.24 Hz;
-2. add normal / inner / outer virtual-dataset generator for PU;
-3. lock the exact network input/preprocessing from the paper;
-4. enable Teacher pretraining only after steps 1–3 pass.
+1. run the three-class generator for PU 6203 and save the manifest;
+2. run per-class frequency/mechanism QA on normal / inner / outer;
+3. verify the localized-spall dual-impulse time morphology against Fig. 4/Fig. 5;
+4. lock the exact network input/preprocessing from the paper;
+5. only then enable Teacher pretraining.
