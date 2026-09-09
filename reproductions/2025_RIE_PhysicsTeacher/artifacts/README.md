@@ -1,21 +1,25 @@
-# Generated-artifact retention policy
+# 生成产物留存策略
 
-Reproduction claims must be auditable from repository artifacts, not only from Markdown summaries.
+复现结论必须能够通过仓库中的实际产物进行审计，不能只依赖 Markdown 摘要。
 
-For every accepted physics / signal-processing milestone, the **generation script** must produce:
+对于每一个已经通过的物理或信号处理里程碑，**生成脚本**必须产出：
 
-- exact config snapshot and runtime overrides;
-- full generated twin arrays (NPZ);
-- a compact, text-inspectable signal export;
-- spectra / feature tables used to obtain reported numbers;
-- signal-processing figures in SVG and PNG;
-- per-class metrics;
-- provenance manifest and SHA-256 values.
+- 精确的 config 快照和运行时覆盖参数；
+- 完整生成的 Twin 数组（NPZ）；
+- 便于文本直接检查的紧凑信号导出；
+- 支撑所报告数值的频谱/特征表；
+- 由信号处理代码生成的 SVG 和 PNG 图；
+- 各类别指标；
+- provenance manifest 与 SHA-256。
 
-For the **fixed Git snapshot**, retain enough text/visual evidence for direct inspection while keeping repository history manageable. Full binary NPZ files may stay reproducible rather than versioned in every commit, but their generation-side hashes must be recorded.
+对于**固定 Git 快照**，需要保留足够的文本和可视化证据，保证能够直接检查，同时控制仓库历史体积。完整二进制 NPZ 可以保持“可再生成”而不在每次提交中版本化，但必须记录生成端对应的哈希。
 
-Current fixed snapshot:
+当前固定快照：
+
 - [20260909_6203_r1r2](audit_snapshots/20260909_6203_r1r2/README.md)
+- [20260909_dual_impulse_r2](audit_snapshots/20260909_dual_impulse_r2/README.md)
 
-The builder is:
+对应生成脚本：
+
 - [scripts/06_build_audit_snapshot.py](../scripts/06_build_audit_snapshot.py)
+- [scripts/07_validate_dual_impulse.py](../scripts/07_validate_dual_impulse.py)
