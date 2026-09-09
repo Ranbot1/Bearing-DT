@@ -169,10 +169,10 @@ def main():
     for label, target in (("bpfi", freqs["bpfi_hz"]), ("bpfo", freqs["bpfo_hz"])):
         for row in rows:
             s = signals[row["class"]]
-            row[f"{label}_raw_band_power"] = band_power(
+            row[f"{label}_raw_band_energy"] = band_power(
                 s["f_raw"], s["p_raw"], target
             )
-            row[f"{label}_env_band_power"] = band_power(
+            row[f"{label}_env_band_energy"] = band_power(
                 s["f_env"], s["p_env"], target
             )
 
