@@ -72,6 +72,7 @@ configs/
   paper_6203.yaml
 
 src/fmdtl/
+  config.py
   sim/bearing_4dof.py
   models.py
   losses.py
@@ -80,10 +81,15 @@ scripts/
   01_validate_simulator.py
   02_pretrain_teacher.py
   03_train_transfer.py
+  04_generate_twin_dataset.py
+  05_evaluate_paper_signal.py
 
 tests/
   test_characteristic_frequencies.py
   test_simulator_smoke.py
+
+reports/
+  R1_R2_SIGNAL_VALIDATION_20260909.md
 
 results/
   README.md
