@@ -1,0 +1,47 @@
+seed: 20250909
+
+paper_confirmed:
+  feature_dim: 128
+  feature_extractor_conv_layers: 4
+  use_batch_norm: true
+  use_cbam: true
+  conv_activation: "leaky_relu"
+  label_predictor:
+    pu: [128, 3]
+    hust: [128, 7]
+  discriminator: [128, 64, 1]
+  optimizer: "SGD"
+  learning_rate: 0.0001
+  batch_size: 16
+  iterations: 100
+  loss_weights:
+    lambda_m: 1.0
+    lambda_t: 0.05
+    lambda_k: 10.0
+  repetitions: 10
+
+paper_confirmed_tasks:
+  pu:
+    sampling_hz: 64000
+    bearing: "6203"
+    classes: ["normal", "inner", "outer"]
+    settings:
+      0: {speed_rpm: 1500, load_torque_nm: 0.7, radial_force_n: 1000}
+      1: {speed_rpm: 900, load_torque_nm: 0.7, radial_force_n: 1000}
+      2: {speed_rpm: 1500, load_torque_nm: 0.1, radial_force_n: 1000}
+      3: {speed_rpm: 1500, load_torque_nm: 0.7, radial_force_n: 400}
+    main_transfer: {source_setting: 0, target_setting: 3}
+
+  hust:
+    sampling_hz: 25600
+    bearing: "ER-16K"
+    source_speed_hz: 20
+    target_speed_hz: 30
+    classes: 7
+
+still_inferred:
+  input_representation: "raw_1d_placeholder"
+  conv_channels: [16, 32, 64, 128]
+  conv_kernel_sizes: [15, 9, 7, 5]
+  cbam_reduction: 8
+  mk_mmd_bandwidths: [0.5, 1.0, 2.0, 4.0, 8.0]
