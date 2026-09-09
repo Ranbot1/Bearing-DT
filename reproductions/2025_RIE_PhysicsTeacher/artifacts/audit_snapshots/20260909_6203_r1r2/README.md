@@ -1,41 +1,63 @@
 # 6203 Twin Signal Audit Snapshot — 2026-09-09
 
-This directory retains **code-generated** artifacts so the R1/R2 mechanism claims can be checked directly from repository files.
+This directory contains **code-generated and retained** audit artifacts for the R1/R2 physics validation.
 
-## Generated twin data retained in Git
+## What is actually retained in Git
 
-- `data/signals_checkpoints.csv`  
-  Normal / inner / outer signal checkpoints obtained from the generated 64 kHz twin signals after anti-aliased reduction to 1 kHz. The retained 0.10 s interval still contains BPFI/BPFO-scale dynamics and is small enough for direct Git inspection.
-- `tables/spectra_0_500hz.csv`  
-  Raw-spectrum and envelope-spectrum powers computed from the **full-resolution 0.30 s, 64 kHz generated signals**.
-- `tables/class_metrics.csv`  
-  Per-class statistics plus BPFI/BPFO peak locations and errors.
-- `tables/characteristic_frequencies.csv`  
-  Theoretical shaft, BPFI, BPFO, BSF and FTF frequencies.
+### Generated twin data
 
-## Code-generated figure retained in Git
+- `data/signals_1khz/part_01.csv ... part_07.csv`
+  - complete retained stable interval from 0.05 s to 0.35 s;
+  - normal / inner / outer signals;
+  - anti-aliased downsampling from the original 64 kHz simulation to 1 kHz;
+  - sufficient to independently inspect BPFO/BPFI-scale periodic evidence.
+- `data/signals_64khz_excerpt_1ms.csv`
+  - 1 ms excerpt at the original **64 kHz** sampling grid;
+  - retained so the repository also contains un-downsampled waveform values.
 
-- `figures/fault_frequency_audit.svg`  
-  Inner/outer envelope-spectrum audit with the theoretical BPFI/BPFO locations marked.
+### Signal-processing data
+
+- `tables/characteristic_frequencies.csv`
+  - theoretical shaft / BPFI / BPFO / BSF / FTF frequencies.
+- `tables/class_metrics.csv`
+  - waveform statistics, raw-spectrum target peaks, envelope-spectrum target peaks and fault-band energies.
+- `tables/spectra_fault_band_60_140hz.csv`
+  - exact raw/envelope spectrum values covering both BPFO and BPFI neighborhoods.
+
+### Code-generated figures
+
+- `figures/inner_time_domain.svg`
+- `figures/inner_raw_spectrum.svg`
+- `figures/inner_envelope_spectrum.svg`
+- `figures/class_envelope_comparison.svg`
+
+These SVGs are generated from the same retained simulation run; they are not externally generated images.
+
+## Key audit numbers from this fixed snapshot
+
+| Item | Value |
+|---|---:|
+| theoretical BPFI | 123.6842 Hz |
+| inner raw-spectrum local peak | 125.4680 Hz |
+| inner raw error | 1.442% |
+| inner envelope peak | 123.7564 Hz |
+| inner envelope error | **0.058%** |
+| theoretical BPFO | 76.3158 Hz |
+| outer raw-spectrum local peak | 76.6760 Hz |
+| outer raw error | 0.472% |
+| outer envelope peak | 76.2874 Hz |
+| outer envelope error | **0.037%** |
+
+The shorter fixed snapshot has coarser frequency resolution than the longer R1/R2 run, so the raw-spectrum inner peak error is larger; the envelope-spectrum mechanism check remains close to theory.
 
 ## Provenance
 
-- `config_snapshot.yaml`: base simulator configuration.
-- `audit_runtime_overrides.json`: short fixed audit-run settings.
-- `manifest.json`: generation-side SHA-256 provenance, including the full-resolution NPZ files generated in the same run. Text-file line-ending normalization by Git may change the byte-level hash after commit.
+- `config_snapshot.yaml`: simulator configuration copied into the snapshot.
+- `audit_runtime_overrides.json`: short-run overrides.
+- `manifest.json`: retained-file SHA-256 values plus hashes for the full-resolution NPZ files produced by the same run.
 
-The same run generated full-resolution `normal.npz`, `inner.npz`, and `outer.npz`. Their SHA-256 values are preserved in `manifest.json`. They are reproducible with:
+The complete 64 kHz NPZ arrays are generated locally by `scripts/06_build_audit_snapshot.py`. Git retains the complete 0.30 s mechanism-band signal at 1 kHz plus a raw 64 kHz excerpt so that the repository remains inspectable without turning Git history into a bulk binary store.
 
-```bash
-python scripts/06_build_audit_snapshot.py \
-  --config configs/paper_6203.yaml \
-  --out artifacts/local_full_snapshot \
-  --duration-s 0.35 \
-  --discard-initial-s 0.05
-```
+## Limitation
 
-The local full snapshot also contains PNG/SVG figures and full-resolution binary arrays.
-
-## Important limitation
-
-Several dynamics and defect parameters remain `INFERRED`. These files verify the **mechanism-level reproduction pipeline**, not high-fidelity waveform matching to the physical Paderborn rig.
+Effective mass, stiffness, damping, Hertz coefficient, clearance and defect dimensions remain `INFERRED`. This snapshot validates **mechanism-level signal behavior**, not high-fidelity physical-rig waveform matching.
