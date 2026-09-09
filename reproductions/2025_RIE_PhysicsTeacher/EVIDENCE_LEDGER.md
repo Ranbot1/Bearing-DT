@@ -101,7 +101,34 @@ Table 1 中 6203 的 “Bearing Speed” 与 Eq. (6)/PU Setting 0 的约 1500 rp
 详见：
 [reports/R1_R2_SIGNAL_VALIDATION_20260909.md](reports/R1_R2_SIGNAL_VALIDATION_20260909.md)
 
-## G. 下一步证据补齐
+## G. Dual-impulse reconstruction evidence
+
+The 2025 paper attributes the localized-spall response to the Luo et al. dynamics line. The accessible referenced literature distinguishes:
+- entry into the spall: lower-frequency step-type response;
+- collision with the trailing edge: higher-frequency transient response.
+
+Reproduction result with half-cosine spall displacement + explicit exit collision:
+- theoretical DITS = 1.078014 ms;
+- detected median DITS = 1.093750 ms;
+- DITS error = 1.460%;
+- median exit/entry HF peak ratio = 1.785;
+- median exit/entry HF RMS ratio = 1.310;
+- envelope BPFI error = 0.242%;
+- disabling the exit collision reduces median HF peak ratio to 0.870.
+
+The numerical collision amplitude/duration remain INFERRED and are not claimed as paper parameters.
+
+Audit:
+[artifacts/audit_snapshots/20260909_dual_impulse_r2/README.md](artifacts/audit_snapshots/20260909_dual_impulse_r2/README.md)
+
+## H. Input preprocessing audit
+
+Open-full-text review confirms simulated vibration data + CNN pretraining, but does not provide a reproducible specification of window length, stride, normalization, raw-1D/reshaped-2D/time-frequency input, or input tensor dimensions.
+
+See:
+[PREPROCESSING_AUDIT.md](PREPROCESSING_AUDIT.md)
+
+## I. 下一步证据补齐
 
 优先继续核对：
 
