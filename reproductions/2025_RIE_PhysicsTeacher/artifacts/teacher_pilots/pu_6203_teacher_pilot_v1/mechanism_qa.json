@@ -1,0 +1,18 @@
+{
+  "note": "Each retained run is only ~0.06 s; spectral resolution is intentionally not used as an R1/R2 re-certification gate for these training windows.",
+  "train_run_short_window_diagnostic": [
+    {
+      "class": "inner",
+      "target_hz": 123.6842105263158,
+      "envelope_peak_hz": 116.63629263212704,
+      "error_pct": 5.698316595301548
+    },
+    {
+      "class": "outer",
+      "target_hz": 76.31578947368422,
+      "envelope_peak_hz": 83.31163759437645,
+      "error_pct": 9.166973399527748
+    }
+  ],
+  "interpretation": "FAIL as a short-run frequency-resolution test; NOT a failure of the already accepted longer-signal R2 mechanism gate."
+}

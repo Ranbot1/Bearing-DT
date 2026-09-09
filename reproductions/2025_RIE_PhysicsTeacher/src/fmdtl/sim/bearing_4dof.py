@@ -1,18 +1,22 @@
-"""Four-DOF ball-bearing dynamics used as the paper-faithful physics baseline.
+"""Four-DOF ball-bearing dynamics for the 2025 physics-teacher reproduction.
 
-Important
----------
-The paper confirms a 4-DOF Hertz-contact model with inner/outer ring x-y
-motion. Several numerical parameters are not yet confirmed. The equations
-below therefore reproduce the *model class* while keeping uncertain values
-in configuration files and the evidence ledger.
+Evidence levels
+---------------
+CONFIRMED from Zhang et al. (2025):
+- 4-DOF inner/outer ring x-y model;
+- Hertzian nonlinear contact;
+- localized faults;
+- simulated signals are expected to retain the dual-impulse mechanism.
 
-State:
-    q = [x_i, y_i, x_o, y_o]
-    dq = [vx_i, vy_i, vx_o, vy_o]
+REFERENCED reconstruction:
+- smooth half-cosine spall displacement profile follows the time-varying
+  displacement modeling family used by Luo/Guo and cited by Zhang et al.;
+- a transient trailing-edge collision term is included because Luo et al.
+  explicitly identify it as necessary for the high-frequency exit impulse.
 
-The localized defect is represented as a temporary increase in local
-clearance when a rolling element traverses a defect angular window.
+INFERRED:
+- numerical impact-force amplitude and duration remain configuration
+  parameters until the exact paper values/equations can be recovered.
 """
 
 from __future__ import annotations
@@ -26,6 +30,7 @@ from scipy.integrate import solve_ivp
 
 
 FaultType = Literal["normal", "inner", "outer"]
+DefectProfile = Literal["rectangular", "half_cosine"]
 
 
 @dataclass(frozen=True)
@@ -35,6 +40,7 @@ class BearingGeometry:
     pitch_diameter_m: float
     contact_angle_rad: float
     shaft_speed_rad_s: float
+    initial_ball_angle_rad: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -64,6 +70,9 @@ class FaultParameters:
     angular_width_rad: float = 0.0
     outer_fault_angle_rad: float = 0.0
     initial_inner_fault_angle_rad: float = 0.0
+    profile: DefectProfile = "half_cosine"
+    exit_impact_force_n: float = 0.0
+    exit_impact_duration_s: float = 8.0e-5
 
 
 @dataclass(frozen=True)
@@ -85,7 +94,6 @@ def characteristic_frequencies(geometry: BearingGeometry) -> dict[str, float]:
         * cos(geometry.contact_angle_rad)
     )
     nb = geometry.ball_count
-
     return {
         "shaft_hz": fr,
         "bpfi_hz": 0.5 * nb * fr * (1.0 + ratio),
@@ -110,12 +118,100 @@ def cage_speed_rad_s(geometry: BearingGeometry) -> float:
     return 0.5 * geometry.shaft_speed_rad_s * (1.0 - ratio)
 
 
+def fault_relative_speed_rad_s(
+    geometry: BearingGeometry, fault: FaultParameters
+) -> float:
+    """Angular speed of a ball relative to the defective race."""
+    omega_c = cage_speed_rad_s(geometry)
+    if fault.type == "outer":
+        return omega_c
+    if fault.type == "inner":
+        return omega_c - geometry.shaft_speed_rad_s
+    return 0.0
+
+
+def dual_impulse_spacing_s(
+    geometry: BearingGeometry, fault: FaultParameters
+) -> float:
+    """Kinematic entry-to-exit time for the configured angular defect width."""
+    omega_rel = abs(fault_relative_speed_rad_s(geometry, fault))
+    if omega_rel <= 0.0:
+        raise ValueError("Fault must be inner or outer with nonzero relative speed")
+    if fault.angular_width_rad <= 0.0:
+        raise ValueError("angular_width_rad must be positive")
+    return fault.angular_width_rad / omega_rel
+
+
 def _wrap_angle(angle: float) -> float:
     return (angle + pi) % (2.0 * pi) - pi
 
 
-def _inside_window(angle: float, center: float, width: float) -> bool:
-    return abs(_wrap_angle(angle - center)) <= 0.5 * width
+def _fault_relative_angle(
+    *,
+    ball_angle: float,
+    time_s: float,
+    geometry: BearingGeometry,
+    fault: FaultParameters,
+) -> float:
+    if fault.type == "outer":
+        center = fault.outer_fault_angle_rad
+    elif fault.type == "inner":
+        center = (
+            fault.initial_inner_fault_angle_rad
+            + geometry.shaft_speed_rad_s * time_s
+        )
+    else:
+        return 0.0
+    return _wrap_angle(ball_angle - center)
+
+
+def defect_passage_events(
+    geometry: BearingGeometry,
+    fault: FaultParameters,
+    start_s: float,
+    end_s: float,
+) -> list[dict[str, float | int]]:
+    """Return kinematic entry/exit events for all rolling elements.
+
+    For an inner-race defect the ball-defect relative angle decreases, so the
+    +width/2 edge is entry and -width/2 is exit. For an outer-race defect the
+    order is reversed.
+    """
+    if fault.type == "normal":
+        return []
+    omega_rel = fault_relative_speed_rad_s(geometry, fault)
+    if omega_rel == 0.0 or fault.angular_width_rad <= 0.0:
+        return []
+
+    half = 0.5 * fault.angular_width_rad
+    entry_edge = half if omega_rel < 0.0 else -half
+    spacing = fault.angular_width_rad / abs(omega_rel)
+
+    events: list[dict[str, float | int]] = []
+    # Wide k range is harmless and keeps the helper independent of run length.
+    for ball_index in range(geometry.ball_count):
+        theta0 = (
+            geometry.initial_ball_angle_rad
+            + 2.0 * pi * ball_index / geometry.ball_count
+        )
+        if fault.type == "inner":
+            theta0 -= fault.initial_inner_fault_angle_rad
+        else:
+            theta0 -= fault.outer_fault_angle_rad
+
+        for k in range(-256, 257):
+            entry_s = (entry_edge + 2.0 * pi * k - theta0) / omega_rel
+            exit_s = entry_s + spacing
+            if entry_s >= start_s and exit_s <= end_s:
+                events.append(
+                    {
+                        "ball_index": ball_index,
+                        "entry_s": float(entry_s),
+                        "exit_s": float(exit_s),
+                        "spacing_s": float(spacing),
+                    }
+                )
+    return sorted(events, key=lambda item: item["entry_s"])
 
 
 def _defect_clearance_increment(
@@ -125,26 +221,69 @@ def _defect_clearance_increment(
     geometry: BearingGeometry,
     fault: FaultParameters,
 ) -> float:
-    """Return the local clearance increment produced by a localized defect."""
+    """Additional contact displacement caused by the local spall."""
     if fault.type == "normal" or fault.depth_m <= 0.0:
         return 0.0
 
-    if fault.type == "outer":
-        center = fault.outer_fault_angle_rad
-        relative = ball_angle
-    elif fault.type == "inner":
-        center = (
-            fault.initial_inner_fault_angle_rad
-            + geometry.shaft_speed_rad_s * time_s
-        )
-        relative = ball_angle
-    else:  # pragma: no cover - type guard
-        raise ValueError(f"Unsupported fault type: {fault.type}")
+    relative = _fault_relative_angle(
+        ball_angle=ball_angle,
+        time_s=time_s,
+        geometry=geometry,
+        fault=fault,
+    )
+    half = 0.5 * fault.angular_width_rad
+    if abs(relative) > half:
+        return 0.0
 
-    return (
-        fault.depth_m
-        if _inside_window(relative, center, fault.angular_width_rad)
-        else 0.0
+    if fault.profile == "rectangular":
+        return fault.depth_m
+    if fault.profile == "half_cosine":
+        # Zero at both spall edges; maximum additional displacement at center.
+        return fault.depth_m * cos(pi * relative / fault.angular_width_rad)
+    raise ValueError(f"Unsupported defect profile: {fault.profile}")
+
+
+def _trailing_edge_impact_force(
+    *,
+    ball_angle: float,
+    time_s: float,
+    geometry: BearingGeometry,
+    fault: FaultParameters,
+) -> float:
+    """Approximate transient force at the spall trailing edge.
+
+    Luo et al. identify the trailing-edge collision as the origin of the
+    higher-frequency second impulse. The exact collision-force constants used
+    in Zhang et al. are not reported in the accessible text, so amplitude and
+    duration are explicit INFERRED configuration parameters.
+    """
+    if (
+        fault.type == "normal"
+        or fault.exit_impact_force_n <= 0.0
+        or fault.exit_impact_duration_s <= 0.0
+        or fault.angular_width_rad <= 0.0
+    ):
+        return 0.0
+
+    relative = _fault_relative_angle(
+        ball_angle=ball_angle,
+        time_s=time_s,
+        geometry=geometry,
+        fault=fault,
+    )
+    omega_rel = fault_relative_speed_rad_s(geometry, fault)
+    exit_edge = -0.5 * fault.angular_width_rad if omega_rel < 0.0 else 0.5 * fault.angular_width_rad
+
+    # Convert the requested temporal FWHM to an angular Gaussian sigma.
+    sigma_angle = max(
+        abs(omega_rel) * fault.exit_impact_duration_s / 2.355,
+        1.0e-12,
+    )
+    distance = _wrap_angle(relative - exit_edge)
+    if abs(distance) > 4.0 * sigma_angle:
+        return 0.0
+    return fault.exit_impact_force_n * np.exp(
+        -0.5 * (distance / sigma_angle) ** 2
     )
 
 
@@ -155,14 +294,18 @@ def _contact_forces(
     dynamics: DynamicParameters,
     fault: FaultParameters,
 ) -> tuple[float, float]:
-    """Sum nonlinear Hertz contact forces acting on the inner ring."""
+    """Sum nonlinear Hertz and trailing-edge impact forces."""
     xi, yi, xo, yo = q
     omega_c = cage_speed_rad_s(geometry)
 
     fx = 0.0
     fy = 0.0
     for j in range(geometry.ball_count):
-        theta = 2.0 * pi * j / geometry.ball_count + omega_c * time_s
+        theta = (
+            geometry.initial_ball_angle_rad
+            + 2.0 * pi * j / geometry.ball_count
+            + omega_c * time_s
+        )
         local_defect = _defect_clearance_increment(
             ball_angle=theta,
             time_s=time_s,
@@ -173,10 +316,20 @@ def _contact_forces(
         relative = (xi - xo) * cos(theta) + (yi - yo) * sin(theta)
         delta = relative - 0.5 * dynamics.clearance_m - local_defect
 
-        if delta <= 0.0:
+        normal_force = (
+            dynamics.hertz_coefficient_npm32 * delta**1.5
+            if delta > 0.0
+            else 0.0
+        )
+        normal_force += _trailing_edge_impact_force(
+            ball_angle=theta,
+            time_s=time_s,
+            geometry=geometry,
+            fault=fault,
+        )
+        if normal_force <= 0.0:
             continue
 
-        normal_force = dynamics.hertz_coefficient_npm32 * delta**1.5
         fx += normal_force * cos(theta)
         fy += normal_force * sin(theta)
 
@@ -219,7 +372,6 @@ def _rhs(
         - dynamics.inner_mass_kg * dynamics.gravity_mps2
     ) / dynamics.inner_mass_kg
 
-    # Newton's third law: outer ring receives the opposite contact force.
     ax_o = (
         -dynamics.outer_damping_x_nspm * vxo
         - dynamics.outer_stiffness_x_npm * xo

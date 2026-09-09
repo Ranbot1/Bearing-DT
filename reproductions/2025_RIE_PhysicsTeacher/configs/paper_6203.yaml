@@ -7,6 +7,8 @@ bearing:
   pitch_diameter_m: 0.0285
   contact_angle_deg: 0.0
   shaft_speed_rpm: 1500.0
+  # INFERRED phase control used for reproducible simulation runs.
+  initial_ball_angle_deg: 0.0
 
 # The following dynamics values are currently INFERRED placeholders.
 # They exist to make the 4-DOF implementation executable, not to claim
@@ -35,6 +37,11 @@ fault:
   # INFERRED: current load direction puts the loaded-zone center near +90 deg.
   outer_fault_angle_deg: 90.0
   initial_inner_fault_angle_deg: 0.0
+  # REFERENCED model class: Luo/Guo-style smooth spall displacement.
+  profile: "half_cosine"
+  # INFERRED numerical reconstruction of the trailing-edge collision term.
+  exit_impact_force_n: 500.0
+  exit_impact_duration_s: 8.0e-5
 
 simulation:
   duration_s: 1.0

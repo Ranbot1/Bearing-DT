@@ -86,12 +86,19 @@ f_{fault}propto f_r
 
 验收：
 
-- [ ] 使用论文确认的 6203 geometry。
-- [ ] 明确列出所有 INFERRED 动力学参数。
-- [ ] 输出 waveform + spectrum/envelope。
-- [ ] 理论频率与模拟频率定量对照表。
-- [ ] 不以“视觉相似”代替物理一致性。
-- [ ] 若无法复现论文幅值/共振形态，必须记录为 unresolved gap。
+- [x] 使用论文确认的 6203 geometry。
+- [x] 明确列出所有 INFERRED 动力学参数。
+- [x] 输出 waveform + spectrum/envelope。
+- [x] 理论频率与模拟频率定量对照表。
+- [x] 不以“视觉相似”代替物理一致性。
+- [x] dual-impulse DITS error <= 5%。
+- [x] exit/entry high-frequency peak ratio median >= 1.2。
+- [x] exit/entry high-frequency RMS ratio median >= 1.1。
+- [x] disable trailing-edge collision 后 exit/entry ratio 必须下降。
+- [x] 若无法复现论文幅值/共振形态，记录为 unresolved gap。
+
+**R2 mechanism-level gate: PASS.**
+Amplitude / resonance calibration is explicitly outside the currently accepted evidence level.
 
 ---
 

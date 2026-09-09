@@ -1,0 +1,22 @@
+{
+  "dataset_id": "pu_6203_teacher_pilot_v1",
+  "shape": [18, 2048],
+  "class_counts": {"normal": 6, "inner": 6, "outer": 6},
+  "split_counts": {"train": 6, "val": 6, "test": 6},
+  "run_counts": {"train": 3, "val": 3, "test": 3},
+  "window_samples": 2048,
+  "stride_samples": 1024,
+  "fs_hz": 64000,
+  "duration_per_run_s": 0.075,
+  "discard_s": 0.015,
+  "runs_per_class": 3,
+  "seed": 20250909,
+  "run_isolated_split": true,
+  "normalization": "none",
+  "input_transform_status": "UNRESOLVED: raw windows retained",
+  "full_npz": {
+    "filename": "teacher_windows_raw.npz",
+    "bytes": 104898,
+    "sha256": "2c904851247054c9fe00365d4ebf4b2d2cb391092268a879de888921a868dec6"
+  }
+}

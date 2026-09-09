@@ -1,0 +1,35 @@
+dataset:
+  id: "pu_6203_teacher_pilot_v1"
+  purpose: "R3 construction pilot; not claimed as the paper author's original simulation dataset"
+  seed: 20250909
+
+paper_confirmed:
+  bearing: "6203"
+  sampling_hz: 64000
+  classes: ["normal", "inner", "outer"]
+  source_condition:
+    speed_rpm: 1500
+    radial_force_n: 1000
+    load_torque_nm: 0.7
+
+construction:
+  # INFERRED because the paper does not report its exact simulated-window length.
+  window_samples: 2048
+  stride_samples: 1024
+  # Pilot keeps split units independent at the simulation-run level.
+  runs:
+    train: 1
+    val: 1
+    test: 1
+  simulation_duration_s: 0.075
+  discard_initial_s: 0.015
+  randomize_initial_ball_phase: true
+  store_raw_windows: true
+  normalization: "none"
+  input_transform: "UNRESOLVED: paper uses convolutional network; exact raw/2D preprocessing not confirmed"
+
+acceptance:
+  require_all_classes_in_each_split: true
+  forbid_cross_run_windows_across_splits: true
+  require_finite_values: true
+  require_unique_run_ids: true
