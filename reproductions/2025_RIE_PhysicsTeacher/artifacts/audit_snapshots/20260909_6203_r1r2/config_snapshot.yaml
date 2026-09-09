@@ -1,0 +1,37 @@
+seed: 20250909
+bearing:
+  name: "6203"
+  ball_count: 8
+  ball_diameter_m: 0.00675
+  pitch_diameter_m: 0.0285
+  contact_angle_deg: 0.0
+  shaft_speed_rpm: 1500.0
+dynamics:
+  inner_mass_kg: 1.0
+  outer_mass_kg: 1.0
+  inner_stiffness_x_npm: 2.0e7
+  inner_stiffness_y_npm: 2.0e7
+  outer_stiffness_x_npm: 2.0e7
+  outer_stiffness_y_npm: 2.0e7
+  inner_damping_x_nspm: 250.0
+  inner_damping_y_nspm: 250.0
+  outer_damping_x_nspm: 250.0
+  outer_damping_y_nspm: 250.0
+  hertz_coefficient_npm32: 8.0e9
+  radial_load_x_n: 0.0
+  radial_load_y_n: 1000.0
+  clearance_m: 1.0e-5
+  eccentricity_m: 1.0e-5
+fault:
+  type: "inner"
+  depth_m: 5.0e-5
+  angular_width_deg: 6.0
+  outer_fault_angle_deg: 90.0
+  initial_inner_fault_angle_deg: 0.0
+simulation:
+  duration_s: 1.0
+  output_fs_hz: 64000
+  integration_max_step_s: 1.5625e-5
+  rtol: 1.0e-7
+  atol: 1.0e-9
+  discard_initial_s: 0.1
