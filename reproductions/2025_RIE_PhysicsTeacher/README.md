@@ -41,11 +41,15 @@ real bearing diagnosis
 - [x] inner / outer localized defect geometry hook
 - [x] bearing characteristic frequencies
 - [x] simulator smoke tests
+- [x] normal / inner / outer virtual-data generator
+- [x] paper-oriented time/frequency-domain evaluator
+- [x] R1 inner BPFI + speed-scaling validation
+- [x] outer load-zone configuration failure discovered and corrected
 - [x] Teacher / domain-transfer 网络接口骨架
 
 ### 尚未宣称完成
 
-- [ ] 与论文 Figure 对应的 simulated waveform / spectrum
+- [x] Fig.5 核心 inner-race frequency-domain mechanism evidence（R2 partial）
 - [ ] Paderborn transfer task 完整复现
 - [ ] HUST transfer task 完整复现
 - [ ] physics-teacher pretraining result
@@ -88,6 +92,9 @@ results/
 ## 最重要的约束
 
 当前版本中，**论文没有公开或尚未核实的动力学参数一律标记为 INFERRED**。因此当前 simulator 首先是“方程结构复现 + 物理 sanity check”，不是已经验收的 paper-level numerical reproduction。
+
+当前 R1/R2 报告：
+- [R1_R2_SIGNAL_VALIDATION_20260909.md](reports/R1_R2_SIGNAL_VALIDATION_20260909.md)
 
 见：
 - [REPRODUCTION_CONTRACT.md](REPRODUCTION_CONTRACT.md)
