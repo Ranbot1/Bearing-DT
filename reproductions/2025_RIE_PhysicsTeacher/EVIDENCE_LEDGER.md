@@ -19,6 +19,18 @@
 | Global + fine-grained class-level alignment | CONFIRMED | proposed multi-adversarial framework |
 | Paderborn + HUST public datasets | CONFIRMED | experiments |
 | Paper averages ≈ 88.15%, 96.74% | CONFIRMED | abstract |
+| Inner-race simulation characteristic frequency 123.24 Hz | CONFIRMED | Eq. (6) / Fig. 5 discussion |
+| Feature extractor = 4 convolutional layers + BN + CBAM | CONFIRMED | Sec. 3.5 / Table 9 |
+| Feature dimension = 128 | CONFIRMED | Table 9 |
+| Label predictor = 128→3 (PU), 128→7 (HUST) | CONFIRMED | Table 9 |
+| Discriminator = 128→64→1 | CONFIRMED | Table 9 |
+| Conv activation = Leaky ReLU | CONFIRMED | Table 9 |
+| Optimizer = SGD, learning rate 1e-4 | CONFIRMED | Table 9 |
+| Batch size = 16, iterations = 100 | CONFIRMED | Table 9 |
+| Loss weights λm/λt/λk = 1.0/0.05/10.0 | CONFIRMED | Table 9 |
+| Repetitions = 10 | CONFIRMED | Table 9 |
+| Knowledge loss uses MK-MMD | CONFIRMED | Sec. 3.2–3.4 |
+| PU Setting 0/1/2/3 conditions | CONFIRMED | Table 3 / Table 8 |
 | No confirmed official GitHub | CONFIRMED AS SEARCH STATUS | repository audit |
 
 ## B. 6203 geometry（正文级已记录）
@@ -46,8 +58,9 @@
 - defect depth / angular width
 - numerical integrator and tolerances（若正文后续未核到）
 - exact sample window length
-- exact optimizer / LR / batch size
-- all loss weights
+- exact convolution channel counts / kernel sizes shown only graphically in Fig. 7/9
+- exact input representation dimensionality used by the final network
+- MK-MMD kernel bandwidths
 
 这些参数当前只用于让代码结构可运行。
 
@@ -65,16 +78,22 @@ Mddot q + Cdot q + Kq = F_{contact}+F_{external}
 
 状态：**REFERENCED / physically reconstructed**。
 
-## E. 下一步证据补齐
+## E. 已发现的原文歧义
+
+Table 1 中 6203 的 “Bearing Speed” 与 Eq. (6)/PU Setting 0 的约 1500 rpm 语境存在单位或录入层面的不一致。当前：
+- characteristic-frequency validation 以 Eq. (6) 的 **123.24 Hz** 为 paper reference；
+- PU transfer condition 以 Table 3 的 **1500 rpm** 为准；
+- 不用 Table 1 的 speed 字段覆盖实验工况。
+
+## F. 下一步证据补齐
 
 优先继续核对：
 
-1. Eq. (6–8) 接触变形与 localized defect 的精确写法；
-2. 论文 simulator 参数表；
-3. network layer table；
-4. knowledge loss exact equation；
-5. Paderborn transfer task definitions；
-6. HUST task definitions；
-7. optimizer / loss weights。
+1. localized spall “dual-impulse” 的精确几何/接触函数；
+2. 论文未公开的有效质量、支承刚度/阻尼、Hertz coefficient 等 simulator 数值；
+3. Fig. 7/9 中卷积核与通道数；
+4. exact input representation / preprocessing；
+5. Paderborn Table 6 的具体 bearing IDs；
+6. HUST Table 7 的具体 source/target sample composition。
 
 任何补齐后必须把本文件对应项从 INFERRED 改为 CONFIRMED，并记录来源。
