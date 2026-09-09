@@ -8,15 +8,13 @@
 \boxed{Diagnostic\ Method}
 \]
 
-不要把动力学方程、CNN、loss 和实验参数全部混在一个章节。
+不要把动力学方程、CNN、loss 和实验参数全部混在同一个章节。
 
 ---
 
-# Part A — Digital Twin Modeling
+# A 部分 — 数字孪生建模（Digital Twin Modeling）
 
----
-
-## A1. Modeling object and assumptions
+## A1. 建模对象与基本假设
 
 开头用一张结构图定义：
 
@@ -29,13 +27,12 @@
 - load；
 - sensor location。
 
-同时声明建模边界。
+同时声明建模边界：
 
-例如：
-
-> Which components are explicitly modeled and which effects are neglected?
+> 哪些部件被显式建模？哪些影响被忽略？
 
 常见 assumptions：
+
 - rigid rings；
 - pure rolling / prescribed slip；
 - constant contact angle；
@@ -47,9 +44,9 @@
 
 ---
 
-## A2. Coordinates and kinematics
+## A2. 坐标系与运动学
 
-先定义符号，再上动力学方程。
+先定义符号，再给动力学方程。
 
 推荐顺序：
 
@@ -69,7 +66,7 @@
 
 ---
 
-## A3. Contact mechanics
+## A3. 接触力学
 
 解释：
 
@@ -86,16 +83,17 @@ F_j = K\,[\delta_j]_+^{3/2}
 \]
 
 随后解释：
+
 - \(K\)；
 - contact condition；
 - clearance；
 - load distribution。
 
-方程后必须有物理解释，不要只列公式。
+方程后必须有物理解释，不能只列公式。
 
 ---
 
-## A4. System dynamic equations
+## A4. 系统动力学方程
 
 统一给：
 
@@ -107,21 +105,21 @@ M\ddot q+C\dot q+Kq=F(q,\dot q,t)
 
 最佳写法：
 
-### 先给 compact matrix form
+### 先给紧凑矩阵形式
 
-让读者理解系统。
+让读者理解系统整体。
 
-### 再给 component equations
+### 再给各分量方程
 
-用于复现。
+保证能够复现。
 
-如果有 10+ 个方程，可把部分推导移到 Appendix / Supplementary Material。
+如果有 10 个以上方程，可把部分推导移到 Appendix / Supplementary Material。
 
 ---
 
-## A5. Fault excitation model
+## A5. 故障激励模型
 
-这是 DT 故障诊断论文里非常关键的一节。
+这是 DT 故障诊断论文中非常关键的一节。
 
 必须回答：
 
@@ -129,21 +127,22 @@ M\ddot q+C\dot q+Kq=F(q,\dot q,t)
 \boxed{\text{故障到底如何改变动力学系统？}}
 \]
 
-不是只给 BPFI/BPFO。
+不能只给 BPFI/BPFO。
 
 可以写成：
 
 \[
-Defect\ Geometry
+缺陷几何
 \rightarrow
-Contact\ Deformation
+接触变形
 \rightarrow
-Contact\ Force
+接触力
 \rightarrow
-Dynamic\ Response
+动力学响应
 \]
 
 分别解释：
+
 - inner race；
 - outer race；
 - roller；
@@ -153,11 +152,11 @@ Dynamic\ Response
 
 ---
 
-## A6. Parameter source
+## A6. 参数来源
 
 单独给表：
 
-| Parameter | Symbol | Value | Unit | Source |
+| 参数 | 符号 | 数值 | 单位 | 来源 |
 |---|---|---:|---|---|
 | Ball number | \(N_b\) | — | — | bearing specification |
 | Pitch diameter | \(D_p\) | — | mm | manufacturer |
@@ -165,17 +164,17 @@ Dynamic\ Response
 | Contact stiffness | \(K\) | — | — | calculation / identification |
 | Damping | \(c\) | — | — | identified / assumed |
 
-“Source”这一列非常重要。
+“来源”这一列非常重要。
 
 它区分：
 
 \[
-measured
-,\quad
-known
-,\quad
-identified
-,\quad
+measured,
+\quad
+known,
+\quad
+identified,
+\quad
 assumed
 \]
 
@@ -183,9 +182,10 @@ assumed
 
 ---
 
-## A7. Numerical solution and virtual data generation
+## A7. 数值求解与虚拟数据生成
 
-必须给：
+必须给出：
+
 - integration / solver；
 - step size；
 - sampling frequency；
@@ -198,21 +198,20 @@ assumed
 
 ---
 
-# Part B — Twin Validation
+# B 部分 — Twin 验证（Twin Validation）
 
-Twin validation 最好放在诊断网络之前或作为 Results 第一部分。
+Twin validation 最好放在诊断网络之前，或作为 Results 的第一部分。
 
-需要至少包含两类证据。
+至少需要两类证据。
 
----
-
-## B1. Mechanism-level validation
+## B1. 机制级验证
 
 回答：
 
 > 故障机理是否正确？
 
 例如：
+
 - BPFI；
 - BPFO；
 - BSF；
@@ -224,18 +223,18 @@ Twin validation 最好放在诊断网络之前或作为 Results 第一部分。
 比较：
 
 \[
-f_{theory}
-,\quad
-f_{sim}
-,\quad
+f_{theory},
+\quad
+f_{sim},
+\quad
 f_{real}
 \]
 
 ---
 
-## B2. Signal/statistical validation
+## B2. 信号/统计级验证
 
-若论文声称 high-fidelity / real-like，才需要更进一步比较：
+若论文声称 high-fidelity / real-like，才需要进一步比较：
 
 - waveform；
 - RMS；
@@ -250,7 +249,7 @@ f_{real}
 
 ---
 
-## B3. Parameter / state validation
+## B3. 参数/状态验证
 
 若研究包含 parameter identification / dynamic updating，还应验证：
 
@@ -268,18 +267,16 @@ state_{DT}
 
 ---
 
-# Part C — Digital-Twin-Assisted Diagnosis
+# C 部分 — 数字孪生辅助诊断（Digital-Twin-Assisted Diagnosis）
 
----
-
-## C1. Overall architecture first
+## C1. 先给总体框架
 
 先用一张图回答：
 
 \[
 Twin\ Output
 \rightarrow
-What\ Module
+进入哪个模块
 \rightarrow
 Diagnostic\ Prediction
 \]
@@ -288,35 +285,35 @@ Diagnostic\ Prediction
 
 ---
 
-## C2. Clearly define the role of DT
+## C2. 明确定义 DT 的角色
 
 Twin 常见角色只有几类：
 
-### Source-data generator
+### 源数据生成器
 
 \[
 D_{DT}\rightarrow Training
 \]
 
-### Data enhancer / fusion source
+### 数据增强/融合源
 
 \[
 D_{DT}+D_{real}\rightarrow D_{fused}
 \]
 
-### Domain source
+### 域源（Domain source）
 
 \[
 D_{DT}\rightarrow Domain\ Adaptation\rightarrow D_{real}
 \]
 
-### Teacher / prior
+### Teacher / 先验
 
 \[
 T_{DT}\rightarrow Student
 \]
 
-### State estimator
+### 状态估计器
 
 \[
 DT\leftrightarrow Sensor
@@ -326,11 +323,10 @@ DT\leftrightarrow Sensor
 
 ---
 
-## C3. Diagnostic backbone
+## C3. 诊断 backbone
 
-如果 backbone 是普通 CNN/ResNet：
+如果 backbone 是普通 CNN/ResNet，只需要写：
 
-只需要写：
 - input；
 - key blocks；
 - feature dimension；
@@ -342,59 +338,50 @@ DT\leftrightarrow Sensor
 
 ---
 
-## C4. Virtual-real interaction mechanism
+## C4. 虚实交互机制
 
-这里是诊断方法的重点。
+这是诊断方法的重点。
 
 建议按：
 
 \[
-Input
+输入
 \rightarrow
-Operation
+操作
 \rightarrow
-Constraint
+约束
 \rightarrow
-Output
+输出
 \]
 
 写每一个模块。
 
-例如：
+例如 Domain adaptation：
 
-### Domain adaptation
+输入：\(z_s,z_t\)
 
-Input:
-\[
-z_s,z_t
-\]
+操作：distribution measurement / discriminator
 
-Operation:
-distribution measurement / discriminator
+约束：
 
-Constraint:
 \[
 D(z_s,z_t)
 \]
 
-Output:
-domain-invariant representation
+输出：domain-invariant representation
 
 不要只说“we align the domains”。
 
 ---
 
-## C5. Loss function
+## C5. 损失函数
 
 先列子损失：
 
 \[
-\mathcal L_{cls}
-,\quad
-\mathcal L_{transfer}
-,\quad
-\mathcal L_{physics}
-,\quad
+\mathcal L_{cls},\quad
+\mathcal L_{transfer},\quad
+\mathcal L_{physics},\quad
 \mathcal L_{KD}
 \]
 
@@ -410,7 +397,7 @@ domain-invariant representation
 \lambda_3\mathcal L_{physics}
 \]
 
-每个 \(\lambda\) 的作用要说明。
+每个 \(\lambda\) 的作用都要说明。
 
 如果存在 min-max：
 
@@ -422,23 +409,23 @@ domain-invariant representation
 
 ---
 
-## C6. Training procedure
+## C6. 训练过程
 
 建议写成阶段：
 
-### Stage 1
+### 阶段 1
 Twin simulation / Teacher pretraining
 
-### Stage 2
+### 阶段 2
 Virtual-real interaction / adaptation
 
-### Stage 3
+### 阶段 3
 Classifier optimization
 
-### Stage 4
+### 阶段 4
 Inference
 
-如果全部 end-to-end，也要写清楚数据在一个 iteration 中怎样流动。
+如果全部 end-to-end，也要写清楚数据在一个 iteration 中如何流动。
 
 ---
 

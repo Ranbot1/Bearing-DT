@@ -1,9 +1,9 @@
 # 轴承数字孪生论文精读
 
-本目录只放**对当前研究路线最重要、值得反复回看的精读文件**。与 \`papers/\` 的区别：
+本目录只放**对当前研究路线最重要、值得反复回看的精读文件**。与 `papers/` 的区别：
 
-- \`papers/\`：全库结构化论文卡片，覆盖面优先；
-- \`deep_readings/\`：正文级拆方法、实验和可复现风险，强调“我们后续怎么用”。
+- `papers/`：全库结构化论文卡片，覆盖面优先；
+- `deep_readings/`：正文级拆解方法、实验和可复现风险，强调“后续研究应该如何使用这些证据”。
 
 ## 第一批优先级
 
@@ -17,20 +17,20 @@
 
 ## 当前研究判断
 
-第一批精读后，已经可以明确：
+第一批精读后，可以明确：
 
 1. **“物理模型生成故障信号作为 Teacher”不是空白。**
 2. **“用因果先验减少 confounder”也已经有人明确提出。**
-3. 仍值得研究的是：  
-   **Teacher 本身应该被允许知道哪些信息？提高 twin fidelity 是否一定提高 unseen-bearing / cross-machine generalization？**
-4. 需要把问题从“有没有 physics teacher”改成：
-   > **Does increasing digital-twin fidelity improve transferable fault knowledge, or transfer more machine-specific shortcuts?**
+3. 仍值得研究的是：**Teacher 本身应该被允许知道哪些信息？提高 twin fidelity 是否一定提高 unseen-bearing / cross-machine generalization？**
+4. 问题不能再停留在“有没有 physics teacher”，而应进一步问：
+   > **提高数字孪生的保真度，究竟是在提高可迁移的故障知识，还是在迁移更多机器特定的捷径信息？**
 
 ## 证据规则
 
 每篇精读文件都区分：
+
 - 论文正文/官方页面已确认；
 - 公开 preview 能确认；
-- 由同团队专利/前置工作辅助重建但尚未从论文全文逐字核实。
+- 由同团队专利/前置工作辅助重建，但尚未从论文全文逐字核实。
 
 不把后两类写成“论文原文事实”。

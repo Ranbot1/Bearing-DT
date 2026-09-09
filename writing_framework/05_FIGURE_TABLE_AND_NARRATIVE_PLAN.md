@@ -24,22 +24,23 @@
 
 ---
 
-# 从五篇精读论文看到的量感
+# 从五篇精读论文看到的图表量感
 
-目前可以完整核对正文 Figure/Table 编号的三篇代表作：
+目前可以完整核对正文 Figure/Table 编号的三篇代表作。
 
 对应精读：
+
 - [Ma 2023 MSSP](../deep_readings/05_2023_Ma_MSSP_HighFidelity_EMTL.md)
 - [Li 2024 Information Fusion](../deep_readings/03_2024_Li_InformationFusion_Dual_Transfer.md)
 - [Zhang 2025 Results in Engineering](../deep_readings/02_2025_Zhang_RIE_Physics_Teacher.md)
 - [Fang 2025 MSSP](../deep_readings/04_2025_Fang_MSSP_CrossSpace_DTDA.md)
 - [Ding 2026 IEEE TASE](../deep_readings/01_2026_Ding_TASE_Dynamic_Causal_KD.md)
 
-| Paper | Figures | Tables | 图表组织特点 |
+| 论文 | Figures | Tables | 图表组织特点 |
 |---|---:|---:|---|
 | Ma 2023 MSSP | 21 | 9 | 大量图用于试验台建模、参数辨识、模型更新和 Twin validation，最后才进入诊断 |
 | Li 2024 Information Fusion | 22 | 8 | 前半篇结构/信息迁移，后半篇数据分布、敏感性和最终诊断 |
-| Zhang 2025 Results in Engineering | 23 | 13 | 表大量承担参数、工况、baseline、ablation 设置；结果常用 Table + confusion/t-SNE 成对解释 |
+| Zhang 2025 Results in Engineering | 23 | 13 | 表格大量承担参数、工况、baseline、ablation 设置；结果常用 Table + confusion/t-SNE 成对解释 |
 
 Fang 2025 MSSP 与 Ding 2026 TASE 当前公开正文不足以负责任地统计最终图表编号，因此不填猜测数值。
 
@@ -51,23 +52,24 @@ Fang 2025 MSSP 与 Ding 2026 TASE 当前公开正文不足以负责任地统计�
 
 ---
 
-# Figure 1 — Overall problem / framework
+# Figure 1 — 总体问题 / 总体框架
 
 第一张图通常是整篇最重要的图。
 
 应该能看到：
 
 \[
-Physical\ Space
+物理空间
 \leftrightarrow
-Digital\ Space
+数字空间
 \rightarrow
-Diagnostic\ Space
+诊断空间
 \]
 
 包括：
+
 - physical data；
-- dynamics/twin；
+- dynamics/Twin；
 - virtual output；
 - virtual-real interaction；
 - final diagnosis。
@@ -76,13 +78,14 @@ Diagnostic\ Space
 
 ---
 
-# Figure 2 — Bearing / test-rig physical model
+# Figure 2 — 轴承 / 试验台物理模型
 
 用途：
 
 > 告诉读者 Twin 到底建了什么。
 
 可以包含：
+
 - bearing geometry；
 - coordinate system；
 - force；
@@ -90,15 +93,14 @@ Diagnostic\ Space
 - sensor；
 - defect location。
 
-若为 multibody/FE，可分：
-- physical object；
-- digital model。
+若为 multibody / FE，可以区分 physical object 与 digital model。
 
 ---
 
-# Figure 3 — Local defect modeling
+# Figure 3 — 局部缺陷建模
 
 单独展示：
+
 - inner-race defect；
 - outer-race defect；
 - rolling-element defect；
@@ -107,63 +109,56 @@ Diagnostic\ Space
 用途：
 
 \[
-Defect\ Geometry
+缺陷几何
 \rightarrow
-Dynamic\ Excitation
+动力学激励
 \]
 
 如果这一步很简单，可以与 Figure 2 合并。
 
 ---
 
-# Figure 4 — Twin validation
+# Figure 4 — Twin 验证
 
 应当是第一张“证据型”结果图。
 
 可组合：
 
-### (a)
-real vs simulated waveform
+- (a) real vs simulated waveform；
+- (b) spectrum / envelope；
+- (c) time-frequency map；
+- (d) distribution / characteristic-frequency error。
 
-### (b)
-spectrum / envelope
-
-### (c)
-time-frequency map
-
-### (d)
-distribution / characteristic-frequency error
-
-重点不是多，而是能证明：
+重点不是多，而是能够证明：
 
 \[
-Twin\ captures\ intended\ behavior
+Twin\ 捕获了预期的物理行为
 \]
 
 ---
 
-# Figure 5 — Diagnostic network / transfer mechanism
+# Figure 5 — 诊断网络 / 迁移机制
 
 只画真正需要解释的模块。
 
-避免把普通：
-Conv → BN → ReLU
-全部画得巨大。
+避免把普通 Conv → BN → ReLU 全部画得巨大。
 
 重点显示：
+
 - virtual branch；
 - physical branch；
 - transfer；
-- teacher；
+- Teacher；
 - fusion；
 - discriminator；
 - loss direction。
 
 ---
 
-# Figure 6 — Experimental protocol
+# Figure 6 — 实验协议
 
 如果实验设计复杂，单独画：
+
 - source；
 - target；
 - train；
@@ -175,9 +170,10 @@ Conv → BN → ReLU
 
 ---
 
-# Figure 7 — Main representation evidence
+# Figure 7 — 主要表示证据
 
 可以选：
+
 - t-SNE；
 - UMAP；
 - confusion matrix；
@@ -187,9 +183,10 @@ Conv → BN → ReLU
 
 ---
 
-# Figure 8 — Robustness / sensitivity
+# Figure 8 — 稳健性 / 敏感性
 
 例如：
+
 - SNR；
 - sample ratio；
 - parameter error；
@@ -197,52 +194,55 @@ Conv → BN → ReLU
 
 ---
 
-# Table 1 — Literature comparison
+# Table 1 — 文献比较
 
 如果 Related Work 中方法差异复杂，可以给：
 
-| Ref. | Physical Model | Calibration | DT Output | Virtual-real Method | Diagnosis Task |
+| 文献 | 物理模型 | 校准方式 | DT 输出 | 虚实交互方式 | 诊断任务 |
+|---|---|---|---|---|---|
 
 这比纯文字更容易说明研究脉络。
 
 ---
 
-# Table 2 — Bearing / Twin parameters
+# Table 2 — Bearing / Twin 参数
 
 必须完整。
 
 推荐：
 
-| Parameter | Symbol | Value | Unit | Source |
+| 参数 | 符号 | 数值 | 单位 | 来源 |
+|---|---|---:|---|---|
 
 ---
 
-# Table 3 — Dataset / test rig
+# Table 3 — 数据集 / 试验台
 
-| Condition | Speed | Load | Fault | Severity | Samples |
+| 工况 | 转速 | 载荷 | 故障 | 严重度 | 样本数 |
+|---|---|---|---|---|---|
 
 ---
 
-# Table 4 — Baseline comparison
-
-主结果表。
+# Table 4 — Baseline 主结果比较
 
 建议同时包含：
+
 - Accuracy；
 - Macro-F1；
 - mean ± std。
 
 ---
 
-# Table 5 — Ablation
+# Table 5 — 消融实验
 
-单独放，不要和 main comparison 混。
+单独放，不要和 main comparison 混在一起。
 
 ---
 
-# Table 6 — Complexity
+# Table 6 — 复杂度
 
-若方法较复杂，推荐：
+若方法较复杂，推荐报告：
+
 - parameters；
 - FLOPs；
 - training time；
@@ -259,28 +259,28 @@ Conv → BN → ReLU
 
 \[
 \boxed{
-System
+系统
 \rightarrow
-Physics
+物理机制
 \rightarrow
-Twin\ Credibility
+Twin\ 可信性
 \rightarrow
-Algorithm
+算法
 \rightarrow
-Protocol
+实验协议
 \rightarrow
-Performance
+性能证据
 }
 \]
 
 而不是：
 
 \[
-Network
+网络
 \rightarrow
-Accuracy
+准确率
 \rightarrow
-最后才解释 Twin
+最后才解释\ Twin
 \]
 
 ---
@@ -289,9 +289,10 @@ Accuracy
 
 Figure caption 不应只是：
 
-> The proposed framework.
+> 所提出的框架。
 
 更好的 caption 需要说明：
+
 - 图展示什么；
 - 各分支的含义；
 - 必要缩写。
@@ -300,20 +301,24 @@ Figure caption 不应只是：
 
 ---
 
-# Results 中引用图表
+# Results 中如何引用图表
 
-不要写：
+不要只写：
 
-> Figure 7 shows the results.
+> Figure 7 展示了结果。
 
-而应写：
+而应写成：
 
-> Figure 7 shows that the simulated outer-race response preserves the expected fault-related spectral pattern across the tested operating conditions.
+> Figure 7 表明，在所测试工况下，模拟外圈响应仍保留预期的故障相关频谱结构。
 
 也就是：
 
 \[
-Figure\ reference + Observation + Meaning
+图表引用
++
+观察
++
+含义
 \]
 
 ---
@@ -326,13 +331,11 @@ Ma / Li / Zhang 三篇分别达到约 21–23 张 Figure 和 8–13 张 Table，
 - parameter identification；
 - virtual-real validation；
 - multi-task diagnosis；
-- ablation / robustness；
-
-证据。
+- ablation / robustness。
 
 因此不要把“20+ Figures”当成目标。
 
-更合理的规划方法是先列出核心 claims，再给每个 claim 配证据：
+更合理的方法是先列核心 claims，再为每个 claim 配证据：
 
 | Claim 类型 | 首选证据 |
 |---|---|
@@ -360,41 +363,41 @@ Ma / Li / Zhang 三篇分别达到约 21–23 张 Figure 和 8–13 张 Table，
 
 例如：
 
-> To evaluate whether the digital model reproduces the intended fault dynamics, Fig. X compares ...
+> 为了评估数字模型是否复现了预期故障动力学，Fig. X 对比了……
 
 图表出现后不要只写：
 
-> Fig. X shows the result.
+> Fig. X 展示了结果。
 
 而应按：
 
 \[
-Reference
+引用
 +
-Observation
+观察
 +
-Interpretation
+解释
 \]
 
 例如：
 
-> Fig. X shows that the simulated response preserves the expected fault-related spectral component across the tested conditions, while Table Y quantifies the remaining discrepancy.
+> Fig. X 表明，模拟响应在不同测试工况下仍保留预期的故障相关频谱成分，而 Table Y 则定量给出了剩余差异。
 
-然后加一个“所以”：
+然后再加一个“所以”：
 
-> This agreement provides the basis for using the virtual responses in the subsequent diagnostic experiments.
+> 这种一致性为后续将虚拟响应用于诊断实验提供了依据。
 
 这样：
 
 \[
 正文
-ightarrow
+\rightarrow
 Figure
-ightarrow
+\rightarrow
 Table
-ightarrow
+\rightarrow
 解释
-ightarrow
+\rightarrow
 下一节
 \]
 

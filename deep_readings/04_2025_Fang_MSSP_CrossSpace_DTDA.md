@@ -2,10 +2,10 @@
 
 ## 论文信息
 
-**Title**  
+**论文题目**  
 A digital twin-enabled domain adaptation network for cross-space fault diagnosis of roller bearings
 
-**Journal**  
+**期刊**  
 Mechanical Systems and Signal Processing, 236 (2025), 113053
 
 **DOI**  
@@ -35,7 +35,7 @@ Full\ fault\ dynamics\ model
 Digital\ Space \rightarrow Physical\ Space
 \]
 
-而不是传统：
+而不是传统的：
 
 \[
 Condition\ A\rightarrow Condition\ B
@@ -45,9 +45,9 @@ Condition\ A\rightarrow Condition\ B
 
 ## 2. Digital Space 建模
 
-作者不是简单 4-DOF ball-bearing model，而是对 **cylindrical roller bearing (CRB)** 建立更完整的 numerical model。
+作者不是简单的 4-DOF ball-bearing model，而是对 **cylindrical roller bearing (CRB)** 建立更完整的 numerical model。
 
-已确认的关键构件：
+已经确认的关键构件：
 
 - cylindrical roller bearing；
 - support housing；
@@ -62,7 +62,7 @@ Condition\ A\rightarrow Condition\ B
 \boxed{bearing\ pedestal\ vibration\ acceleration}
 \]
 
-这已经把 support/housing response 纳入。
+也就是说，support/housing response 已经被纳入模型。
 
 ---
 
@@ -83,7 +83,7 @@ Augmented Lagrange methodology 适合把接触约束和系统运动方程统一�
 Fault\ mechanism + Structure\ response
 \]
 
-即我们定义的 **B: Full-physics-like Twin**。
+即我们定义的 **B：Full-physics-like Twin**。
 
 ---
 
@@ -97,13 +97,13 @@ Fault\ mechanism + Structure\ response
 
 ### Cage pillar fracture
 
-很多公开 bearing simulator 只做 inner / outer / ball；Fang 把 cage structural fault 也纳入动态模型，说明其目标是“可配置故障动力学 source domain”。
+很多公开 bearing simulator 只做 inner / outer / ball；Fang 把 cage structural fault 也纳入动态模型，说明其目标是构造“可配置故障动力学 source domain”。
 
 ---
 
 ## 5. Physical Space
 
-作者实际：
+作者实际完成：
 
 - 加工 defective bearings；
 - 搭建 bearing test rig；
@@ -157,12 +157,12 @@ DTDA = Bearing\ DT + DJDA
 
 ## 7. 论文真正贡献
 
-1. 建了相对高复杂度 CRB + support housing dynamics；
+1. 建立了相对高复杂度的 CRB + support housing dynamics；
 2. fault geometry 可配置；
 3. digital twin 变成一个大量 labeled source-data generator；
 4. 通过 DA 解决 digital–physical distribution shift。
 
-因此它的重要性不是网络本身，而是给出一个很清楚的研究范式：
+因此它的重要性不只是网络本身，而是给出一个很清楚的研究范式：
 
 \[
 \boxed{
@@ -174,13 +174,13 @@ physics\ simulation\ can\ be\ the\ source\ domain
 
 ## 8. 与我们的差别
 
-Fang 的隐含逻辑：
+Fang 的隐含逻辑是：
 
 > Digital model 越完整，生成的 source-domain diagnostic knowledge 越有价值。
 
-我们准备质疑的是：
+我们准备进一步质疑：
 
-> 对 classification 来说，support housing / path / machine response 是否全部属于“应该被 transfer 的 knowledge”？
+> 对 classification 来说，support housing / path / machine response 是否全部都属于“应该被 transfer 的 knowledge”？
 
 因为：
 
@@ -189,7 +189,7 @@ x_B =
 H_{machine}\{x_{fault}\}+n
 \]
 
-其中 \(H_{machine}\) 对当前机器可能有帮助，但对另一台机器可能是 domain-specific cue。
+其中 \(H_{machine}\) 对当前机器可能有帮助，但对另一台机器也可能变成 domain-specific cue。
 
 ---
 
@@ -198,6 +198,7 @@ H_{machine}\{x_{fault}\}+n
 其任务是 **closed-set DA**。
 
 这意味着：
+
 - target fault categories 已在 digital source 中出现；
 - 学习时 target unlabeled data 仍可参与 adaptation。
 
@@ -213,13 +214,13 @@ H_{machine}\{x_{fault}\}+n
 
 ## 10. 对我们的用法
 
-不要第一阶段复刻它完整 multibody model。
+不要在第一阶段复刻它的完整 multibody model。
 
-更合理：
+更合理的做法是：
 
 ### Baseline B
 
-用简化：
+用简化形式：
 
 \[
 4/5DOF\ bearing
@@ -237,7 +238,7 @@ housing\ transfer\ function
 mechanism-only
 \]
 
-统一 Student 比较。
+然后使用统一 Student 做比较。
 
 这样是在研究它背后的科学假设，而不是复制一个重型工程模型。
 
@@ -250,6 +251,7 @@ mechanism-only
 **5 / 5**
 
 因为需要：
+
 - CRB geometry；
 - multibody solver；
 - cage fracture analytical model；
@@ -260,4 +262,4 @@ mechanism-only
 
 **3 / 5**
 
-只要能够控制“是否加入 machine/path response”即可完成我们要的 A/B/C 信息干预。
+只要能够控制“是否加入 machine/path response”，就可以完成我们需要的 A/B/C 信息干预。

@@ -2,10 +2,10 @@
 
 ## 论文信息
 
-**Title**  
+**论文题目**  
 Digital twin-assisted dual transfer: A novel information-model adaptation method for rolling bearing fault diagnosis
 
-**Journal**  
+**期刊**  
 Information Fusion, 106 (2024), 102271
 
 **DOI**  
@@ -28,9 +28,9 @@ model\ transfer
 }
 \]
 
-也就是说它已经不只是问“模拟数据怎么训练网络”，而是在问：
+也就是说，它已经不只是问“模拟数据怎么训练网络”，而是在问：
 
-> 模拟信息本身怎么变得更适合迁移？模型又怎么进一步适配？
+> 模拟信息本身如何变得更适合迁移？模型又如何进一步完成适配？
 
 ---
 
@@ -42,7 +42,7 @@ model\ transfer
 P(x_{dyn})\neq P(x_{real})
 \]
 
-如果直接用 dynamics response 训练，sim-real information distribution difference 会导致 transfer performance 差。
+如果直接用 dynamics response 训练，sim-real information distribution difference 会导致 transfer performance 下降。
 
 作者因此设计：
 
@@ -58,7 +58,7 @@ DAd\text{-}MT
 
 ## 3. 第一层：DTd-IT
 
-**Digital Twin-driven Information Transfer**
+**Digital Twin-driven Information Transfer（数字孪生驱动的信息迁移）**
 
 输入：
 
@@ -94,11 +94,11 @@ P(x_{real})
 
 作者把该模块称为 **ITDT — Information Transfer Digital Twin**。
 
-论文强调“actual inferred components”被引入到动态模型响应，使 twin data 的 information-distribution difference 下降。
+论文强调把“actual inferred components”引入动态模型响应，使 twin data 的 information-distribution difference 降低。
 
 公开正文片段还显示，其实现中会利用真实数据的统计信息构造噪声/扰动成分，再与动态响应进行融合。
 
-这意味着这篇的哲学明显偏：
+这意味着这篇的研究哲学明显偏向：
 
 \[
 \boxed{signal/distribution\ fidelity\uparrow}
@@ -108,9 +108,9 @@ P(x_{real})
 
 ## 4. 第二层：DAd-MT
 
-**Digital-Analogue-driven Model Transfer**
+**Digital-Analogue-driven Model Transfer（数字-实测驱动的模型迁移）**
 
-即使 ITDT 已把数据做得更像真实数据：
+即使 ITDT 已把数据做得更接近真实数据：
 
 - measured samples 仍然少；
 - twin data 仍可能存在 residual gap。
@@ -175,13 +175,13 @@ z_{twin}\rightarrow z_{real}
 
 因此是两次 gap reduction：
 
-### data/information gap
+### 数据/信息间隙
 
 \[
 D_x\downarrow
 \]
 
-### feature/model gap
+### 特征/模型间隙
 
 \[
 D_z\downarrow
@@ -191,7 +191,7 @@ D_z\downarrow
 
 ## 6. 实验
 
-论文使用 **两个公开 bearing datasets** 做实验，并重点验证：
+论文使用**两个公开轴承数据集**做实验，并重点验证：
 
 - small measured sample；
 - waveform similarity；
@@ -215,7 +215,7 @@ D_z\downarrow
 }
 \]
 
-他们假设：
+他们隐含假设：
 
 \[
 sim-real\ distribution\ gap\downarrow
@@ -225,7 +225,7 @@ diagnosis\ transfer\uparrow
 
 这个假设在 small-sample same-system transfer 中很合理。
 
-但我们的研究可以质疑它在 unseen-bearing / unseen-machine 下是否仍成立。
+但我们的研究可以进一步质疑：在 unseen-bearing / unseen-machine 下是否仍然成立？
 
 ---
 
@@ -315,7 +315,7 @@ Acc_{unseen}(C)>Acc_{unseen}(A)
 
 就会形成非常有价值的结果：
 
-> 更强的 signal/distribution fidelity 不一定带来更强的 transferable diagnostic fidelity。
+> 更强的信号/分布保真度，不一定带来更强的可迁移诊断保真度。
 
 ---
 
@@ -331,7 +331,7 @@ x_{sim}\rightarrow x_{real-like}
 
 ### Zhang 2025
 
-明确说：
+明确认为：
 
 \[
 x_{sim}\not\approx x_{real}
@@ -355,9 +355,9 @@ Mechanism-faithful\ transfer
 
 **3 / 5**
 
-如果完整复现 DTa-DT 要重建 ITDT + DBTN。
+如果完整复现 DTa-DT，需要重建 ITDT + DBTN。
 
-但我们不一定需要完整复现网络；可以先复现它的科学假设：
+但我们不一定需要完整复现网络；可以先复现它背后的科学假设：
 
 > 将真实数据统计/传递路径信息注入 simulation，使 twin distribution 更接近 real。
 

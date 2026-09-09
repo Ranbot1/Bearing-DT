@@ -1,27 +1,28 @@
 # Fang et al. 2025 — A digital twin-enabled domain adaptation network for cross-space fault diagnosis of roller bearings
 
-- Journal: **Mechanical Systems and Signal Processing**, 236, 113053
-- DOI: https://doi.org/10.1016/j.ymssp.2025.113053
-- Author page: https://faculty.csu.edu.cn/fangcongcong/
-- Reading status: **B+**
-- Official code: **未发现**
-- Journal note: 作者主页将该论文标为 JCR Q1。
+- 期刊：**Mechanical Systems and Signal Processing**, 236, 113053
+- DOI：https://doi.org/10.1016/j.ymssp.2025.113053
+- 作者主页：https://faculty.csu.edu.cn/fangcongcong/
+- 阅读状态：**B+**
+- 官方代码：**未发现**
+- 期刊备注：作者主页将该论文标为 JCR Q1。
 
-## 问题
+## 研究问题
 
-真实工业 CRB labeled fault data 少；digital-space simulation 有标签，但与 physical-space measured data 存在 domain discrepancy。
+真实工业 CRB 的 labeled fault data 较少；digital-space simulation 有标签，但与 physical-space measured data 存在 domain discrepancy。
 
 ## DT 物理建模
 
 数字空间建立：
-- **cylindrical roller bearing (CRB)**
-- **support housing**
-- Augmented Lagrange multibody dynamics
-- Hertzian contact theory
-- localized raceway defect analytical formulation
-- cage pillar fracture model
 
-Twin 输出的是对应 fault modes 的 **bearing pedestal vibration acceleration**，而不是只输出 characteristic frequency。
+- **cylindrical roller bearing (CRB)**；
+- **support housing**；
+- Augmented Lagrange multibody dynamics；
+- Hertzian contact theory；
+- localized raceway defect analytical formulation；
+- cage pillar fracture model。
+
+Twin 输出对应 fault modes 的 **bearing pedestal vibration acceleration**，而不是只输出 characteristic frequency。
 
 ## Physical space
 
@@ -29,17 +30,17 @@ Twin 输出的是对应 fault modes 的 **bearing pedestal vibration acceleratio
 
 于是形成：
 
-[
-D_s = labeled digital vibration
-]
+\[
+D_s = labeled\ digital\ vibration
+\]
 
-[
-D_t = unlabeled physical vibration
-]
+\[
+D_t = unlabeled\ physical\ vibration
+\]
 
 ## 诊断网络
 
-提出 **DJDA (dynamic joint distributed domain adaptation)**：
+提出 **DJDA（dynamic joint distributed domain adaptation）**：
 
 - global/marginal distribution alignment；
 - class-wise/conditional distribution discrimination；
@@ -47,9 +48,9 @@ D_t = unlabeled physical vibration
 
 最终：
 
-[
-Bearing DT + DJDA Rightarrow DTDA
-]
+\[
+Bearing\ DT + DJDA \Rightarrow DTDA
+\]
 
 ## 创新点
 
@@ -63,10 +64,12 @@ Bearing DT + DJDA Rightarrow DTDA
 它是非常好的 **Full-physics / Sim2Real baseline**。
 
 但它仍然默认：
-> digital domain 提供越丰富、越接近真实系统的 dynamics 越好。
+
+> digital domain 提供的动力学信息越丰富、越接近真实系统越好。
 
 我们的研究可以进一步问：
-> 对 classification 来说，support housing / path / machine dynamics 是否是应该 transfer 的“知识”，还是可能成为 nuisance？
+
+> 对 classification 来说，support housing / path / machine dynamics 到底是应该迁移的“知识”，还是可能成为 nuisance？
 
 ## 复现难度
 

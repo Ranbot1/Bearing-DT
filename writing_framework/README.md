@@ -9,18 +9,18 @@
 
 ## 一条总原则
 
-轴承数字孪生故障诊断论文通常存在两条需要同时成立的证据链：
+轴承数字孪生故障诊断论文通常存在两条需要同时成立的证据链。
 
 ### 证据链 A：Twin 本身可信
 
 \[
-Physical/Mechanism\ Assumptions
+物理/机制假设
 \rightarrow
-Dynamic\ Model
+动力学模型
 \rightarrow
-Virtual\ Response
+虚拟响应
 \rightarrow
-Twin\ Validation
+Twin\ 验证
 \]
 
 需要回答：
@@ -30,13 +30,13 @@ Twin\ Validation
 ### 证据链 B：Twin 对诊断有用
 
 \[
-Validated\ Twin
+已验证的\ Twin
 \rightarrow
-Virtual/Physical\ Interaction
+虚实交互
 \rightarrow
-Diagnostic\ Model
+诊断模型
 \rightarrow
-Experimental\ Evidence
+实验证据
 \]
 
 需要回答：
@@ -50,15 +50,15 @@ Experimental\ Evidence
 从高优先级精读样本中可以进一步蒸馏出一个稳定规律：
 
 \[
-oxed{
+\boxed{
 正文提出问题
-ightarrow
-Figure 给直观结构/现象
-ightarrow
-Table 给精确参数/数值
-ightarrow
+\rightarrow
+Figure\ 给直观结构/现象
+\rightarrow
+Table\ 给精确参数/数值
+\rightarrow
 正文解释其意义
-ightarrow
+\rightarrow
 进入下一论证问题
 }
 \]
@@ -68,9 +68,10 @@ Table 给精确参数/数值
 - **结构/框架类 Figure**：回答“系统是什么、信息怎么流、故障怎么进入模型”；
 - **数据/参数类 Table**：回答“模型和实验到底用了什么”；
 - **Twin validation Figure/Table**：回答“虚拟模型为什么可信”；
-- **diagnosis Figure/Table**：回答“方法是否有效、哪里有效、为什么有效”。
+- **诊断 Figure/Table**：回答“方法是否有效、哪里有效、为什么有效”。
 
 目前能完整核对正文编号的三篇代表论文中：
+
 - Ma 2023 MSSP：21 Figures + 9 Tables；
 - Li 2024 Information Fusion：22 Figures + 8 Tables；
 - Zhang 2025 Results in Engineering：23 Figures + 13 Tables。
@@ -81,19 +82,19 @@ Table 给精确参数/数值
 
 ## 推荐的完整论文结构
 
-1. **Title**
-2. **Abstract**
-3. **Keywords**
-4. **1. Introduction**
-5. **2. Related Work / Theoretical Background**
-6. **3. Digital Twin Modeling**
-7. **4. Digital-Twin-Assisted Diagnostic Method**
-8. **5. Experimental Setup**
-9. **6. Results and Analysis**
-10. **7. Discussion**
-11. **8. Conclusions**
-12. **Data / Code Availability**
-13. **References**
+1. **题目（Title）**
+2. **摘要（Abstract）**
+3. **关键词（Keywords）**
+4. **1. 引言（Introduction）**
+5. **2. 相关工作 / 理论背景（Related Work / Theoretical Background）**
+6. **3. 数字孪生建模（Digital Twin Modeling）**
+7. **4. 数字孪生辅助诊断方法（Digital-Twin-Assisted Diagnostic Method）**
+8. **5. 实验设置（Experimental Setup）**
+9. **6. 结果与分析（Results and Analysis）**
+10. **7. 讨论（Discussion）**
+11. **8. 结论（Conclusions）**
+12. **数据 / 代码可用性（Data / Code Availability）**
+13. **参考文献（References）**
 
 具体可根据期刊篇幅把第 2 节并入 Introduction，或把第 5、6 节合并为 Experiments and Results。
 
@@ -102,9 +103,9 @@ Table 给精确参数/数值
 ## 本目录
 
 - [01 — 全文骨架与章节功能](01_FULL_MANUSCRIPT_STRUCTURE.md)
-- [02 — Introduction 与 Related Work 写法](02_INTRODUCTION_AND_RELATED_WORK.md)
+- [02 — 引言与相关工作写法](02_INTRODUCTION_AND_RELATED_WORK.md)
 - [03 — DT 建模与诊断方法章节写法](03_METHOD_SECTION_STRUCTURE.md)
-- [04 — 实验、结果与 Discussion 写法](04_EXPERIMENT_RESULTS_DISCUSSION.md)
+- [04 — 实验、结果与讨论写法](04_EXPERIMENT_RESULTS_DISCUSSION.md)
 - [05 — 图表规划与论文叙事顺序](05_FIGURE_TABLE_AND_NARRATIVE_PLAN.md)
 - [06 — 写作检查清单](06_WRITING_CHECKLIST.md)
 
@@ -117,21 +118,21 @@ Table 给精确参数/数值
 推荐：
 
 \[
-Method
+方法
 \rightarrow
-Experimental\ Setup
+实验设置
 \rightarrow
-Results
+结果
 \rightarrow
-Discussion
+讨论
 \rightarrow
-Introduction
+引言
 \rightarrow
-Related\ Work
+相关工作
 \rightarrow
-Conclusion
+结论
 \rightarrow
-Abstract
+摘要
 \]
 
 原因是 Introduction 和 Abstract 必须与最终完成的实验事实严格一致，不宜在实验尚未稳定时提前写死。
@@ -147,22 +148,22 @@ Abstract
 5. **Introduction 中 method details 过多，导致问题链条不清楚。**
 6. **Results 只报最高 accuracy，没有解释 improvement 来自哪里。**
 7. **Discussion 与 Results 重复，没有讨论适用边界和失败条件。**
-8. **把“virtual model”“simulation”“digital twin”三个概念混用而不定义。**
+8. **把 virtual model、simulation、digital twin 三个概念混用而不定义。**
 
 写作时应始终保持：
 
 \[
-Problem
+问题
 \rightarrow
-Why\ DT
+为什么需要\ DT
 \rightarrow
-How\ Twin\ is\ built
+Twin\ 如何建立
 \rightarrow
-Why\ Twin\ is\ credible
+为什么\ Twin\ 可信
 \rightarrow
-How\ Twin\ enters\ diagnosis
+Twin\ 如何进入诊断
 \rightarrow
-Does\ it\ work
+方法是否有效
 \]
 
-这一条主线不断裂。
+这一条主线不能断裂。
