@@ -1,0 +1,36 @@
+{
+  "model": {
+    "n_passages": 7,
+    "theoretical_dits_s": 0.001078014184397163,
+    "detected_dits_median_s": 0.0010937499999999906,
+    "dits_error_pct": 1.4597039473675486,
+    "exit_entry_hf_peak_ratio_median": 1.7849182237639654,
+    "exit_entry_hf_rms_ratio_median": 1.310451548408494,
+    "fraction_exit_peak_gt_entry": 0.5714285714285714,
+    "entry_lowpass_step_median": 1.2441407457856164,
+    "theoretical_bpfi_hz": 123.6842105263158,
+    "envelope_bpfi_peak_hz": 123.38519196315482,
+    "envelope_bpfi_error_pct": 0.24175968936418893
+  },
+  "no_exit_impact_ablation": {
+    "n_passages": 7,
+    "theoretical_dits_s": 0.001078014184397163,
+    "detected_dits_median_s": 0.0010468749999999888,
+    "dits_error_pct": 2.8885690789484055,
+    "exit_entry_hf_peak_ratio_median": 0.8698411538855924,
+    "exit_entry_hf_rms_ratio_median": 0.876005442891231,
+    "fraction_exit_peak_gt_entry": 0.2857142857142857,
+    "entry_lowpass_step_median": 0.281976645093663,
+    "theoretical_bpfi_hz": 123.6842105263158,
+    "envelope_bpfi_peak_hz": 116.30696722570289,
+    "envelope_bpfi_error_pct": 5.96457968985724
+  },
+  "criteria": {
+    "dits_error_le_5pct": true,
+    "exit_entry_peak_ratio_ge_1p2": true,
+    "exit_entry_rms_ratio_ge_1p1": true,
+    "bpfi_error_le_2pct": true,
+    "impact_ablation_reduces_peak_ratio": true
+  },
+  "pass": true
+}
