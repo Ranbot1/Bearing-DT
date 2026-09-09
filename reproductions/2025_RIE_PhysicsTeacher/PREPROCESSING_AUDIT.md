@@ -1,41 +1,39 @@
-# Input / Preprocessing Audit — 2026-09-09
+# 输入与预处理审计 — 2026-09-09
 
-Paper: **Failure mechanism-driven multi-adversarial domain transfer learning for rolling bearing fault diagnosis**  
-DOI: 10.1016/j.rineng.2025.106165
+论文：**Failure mechanism-driven multi-adversarial domain transfer learning for rolling bearing fault diagnosis**  
+DOI：10.1016/j.rineng.2025.106165
 
-## Confirmed from the open full text
+## 开放全文中已经确认的信息
 
-- The pre-trained model is a deep CNN trained with **simulated bearing vibration data**.
-- The pre-trained feature extractor is intentionally similar to the transfer network feature extractor.
-- The proposed shared feature extractor contains **4 convolutional layers + BN + CBAM**.
-- The paper compares against a baseline named **CNN2d**.
-- The paper gives training hyperparameters (SGD, LR, batch size, iterations, loss weights).
+- 预训练模型是使用**模拟轴承振动数据**训练的深度 CNN。
+- 预训练特征提取器与迁移网络的特征提取器有意保持相似。
+- 所提出的共享特征提取器包含 **4 个卷积层 + BN + CBAM**。
+- 论文与一个名为 **CNN2d** 的 baseline 进行比较。
+- 论文给出了训练超参数，包括 SGD、学习率、batch size、iterations 和 loss weights。
 
-## Not found in the accessible full text
+## 当前可访问全文中没有找到的信息
 
-The open text does **not** provide a reproducible specification for:
+开放正文**没有**给出以下内容的可复现规格：
 
-- exact simulated-signal window length;
-- overlap/stride;
-- normalization formula;
-- whether the proposed network receives raw 1-D vibration directly;
-- whether vibration is reshaped into a 2-D array;
-- whether STFT/CWT/envelope/time-frequency images are used;
-- exact dimensions of the input tensor before Conv1.
+- 模拟信号的精确 window length；
+- overlap / stride；
+- normalization 公式；
+- 所提网络是否直接接收 raw 1-D vibration；
+- 是否将振动信号 reshape 成 2-D array；
+- 是否使用 STFT / CWT / envelope / time-frequency image；
+- Conv1 之前 input tensor 的精确维度。
 
-The general introduction mentions that deep networks can learn from raw vibration signals **or simple transformations**, but this is background discussion and cannot be treated as the method's preprocessing specification.
+论文引言只是在一般性背景中说明，深度网络可以从 raw vibration signals **或简单变换**中学习，这不能作为本文具体方法的 preprocessing specification。
 
-The existence of a comparison baseline named CNN2d is also insufficient to prove the proposed method's exact input transformation.
+同样，存在一个名为 CNN2d 的对比 baseline，也不足以证明所提方法采用了哪一种精确输入变换。
 
-## Reproduction decision
+## 复现决策
 
-Until stronger evidence is available:
+在获得更强证据之前：
 
-1. retain raw 64-kHz simulated windows as the canonical Teacher-pilot data;
-2. do not label any 1-D/2-D transformation as PAPER-CONFIRMED;
-3. keep Teacher pretraining blocked for the **paper-faithful** track;
-4. if a fallback is later required, implement it under an explicitly named
-   reproduction fallback config and compare alternatives rather than silently
-   choosing one.
+1. 保留 raw 64-kHz simulated windows，作为 Teacher pilot 的规范数据；
+2. 不把任何 1-D / 2-D transformation 标记为 PAPER-CONFIRMED；
+3. 对 **paper-faithful** 路线继续阻止 Teacher pretraining；
+4. 如果后续确实需要 fallback，则必须放在名称明确的 reproduction fallback config 中，并比较不同方案，不能静默选择某一种预处理。
 
-Current status: **UNRESOLVED, transparently bounded**.
+当前状态：**UNRESOLVED，但边界已明确记录。**
