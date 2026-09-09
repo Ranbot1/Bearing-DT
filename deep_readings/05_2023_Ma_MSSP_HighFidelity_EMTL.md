@@ -2,10 +2,10 @@
 
 ## 论文信息
 
-**Title**  
+**论文题目**  
 Digital twin-assisted enhanced meta-transfer learning for rolling bearing fault diagnosis
 
-**Journal**  
+**期刊**  
 Mechanical Systems and Signal Processing, 200 (2023), 110490
 
 **DOI**  
@@ -62,15 +62,15 @@ Twin 包括 bearing test rig 的多个结构部分：
 
 作者不完全依赖手册 nominal parameters。
 
-### Bearing local contact
+### 轴承局部接触
 
 建立 roller/race local contact FE model，研究 radial contact stiffness 与 load 的关系。
 
-### Friction
+### 摩擦
 
 考虑动态/静态 friction coefficient，并结合润滑条件。
 
-### Modal test
+### 模态试验
 
 对关键结构部件进行 modal testing。
 
@@ -86,7 +86,7 @@ f_n^{real},\zeta^{real},\phi^{real}
 
 ## 4. Complete-modal decomposition
 
-真实结构可能有：
+真实结构可能同时存在：
 
 - noise；
 - close-spaced modes。
@@ -126,7 +126,7 @@ modal_{test}
 )
 \]
 
-公开信息显示更新后各组件 modal error 控制在约 5% 以内。
+公开信息显示，更新后各组件 modal error 控制在约 5% 以内。
 
 论文最终报告 DT modeling accuracy：
 
@@ -164,6 +164,7 @@ modal_{test}
 - 2500 r/min。
 
 这让论文覆盖：
+
 - steady low speed；
 - transient speed；
 - steady high speed。
@@ -174,12 +175,12 @@ modal_{test}
 
 正文列出的代表参数包括：
 
-- outer race radius: 40 mm；
-- inner race radius: 20 mm；
-- roller radius: 4.75 mm；
-- pitch radius: 30 mm；
-- roller number: 13/14；
-- radial clearance: 0.25 mm（对应论文给出的条件）。
+- outer race radius：40 mm；
+- inner race radius：20 mm；
+- roller radius：4.75 mm；
+- pitch radius：30 mm；
+- roller number：13/14；
+- radial clearance：0.25 mm（对应论文给出的条件）。
 
 这些参数说明其 Twin 真正用到具体 geometry，而不是只生成 abstract fault-frequency sinusoid。
 
@@ -236,6 +237,7 @@ signal/statistical\ similarity
 \]
 
 通过：
+
 - test；
 - identification；
 - FE updating；
@@ -244,11 +246,11 @@ signal/statistical\ similarity
 
 所以它回答的是：
 
-> 高保真 Twin 能否提供可迁移故障数据？
+> 高保真 Twin 能否提供可迁移的故障数据？
 
 而不是：
 
-> 最少需要多少物理信息才能教会 classifier？
+> 最少需要多少物理信息，才能教会 classifier？
 
 ---
 
@@ -290,7 +292,7 @@ diagnostic\ generalization\uparrow?
 - ADAMS；
 - real structural parameters。
 
-没有实验台时无法证明“你的 Paderborn high-fidelity twin”真的代表了 Paderborn 的结构动力学。
+没有实验台时，无法证明“你的 Paderborn high-fidelity twin”真的代表了 Paderborn 的结构动力学。
 
 因此我们的 Stage 1 应从 Zhang 2025 这类 mechanism simulator 开始。
 
@@ -314,7 +316,8 @@ Ma 2023 应作为：
 
 **3.5 / 5**
 
-可用：
+可以用：
+
 - bearing dynamics；
 - estimated resonance transfer function；
 - statistical calibration；
