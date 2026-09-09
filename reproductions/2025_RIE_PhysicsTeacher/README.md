@@ -7,7 +7,7 @@
 - Journal: Results in Engineering, 27 (2025), 106165
 - DOI: https://doi.org/10.1016/j.rineng.2025.106165
 - Official code: **截至 2026-09-09 未发现**
-- Reproduction status: **Stage R0/R1 — repository + 4-DOF simulator implementation**
+- Reproduction status: **PHYSICS_REPRODUCED — R1/R2 mechanism gates passed; Teacher dataset pilot passed**
 
 ## 为什么第一篇复现它
 
@@ -45,11 +45,16 @@ real bearing diagnosis
 - [x] paper-oriented time/frequency-domain evaluator
 - [x] R1 inner BPFI + speed-scaling validation
 - [x] outer load-zone configuration failure discovered and corrected
+- [x] dual-impulse DITS + trailing-edge collision mechanism validation
+- [x] no-exit-impact negative control
+- [x] run-isolated PU Teacher pilot dataset construction
+- [x] train / val / test raw-window audit retention
 - [x] Teacher / domain-transfer 网络接口骨架
 
 ### 尚未宣称完成
 
-- [x] Fig.5 核心 inner-race frequency-domain mechanism evidence（R2 partial）
+- [x] Fig.5 核心 inner-race frequency-domain mechanism evidence
+- [x] R2 dual-impulse mechanism gate
 - [ ] Paderborn transfer task 完整复现
 - [ ] HUST transfer task 完整复现
 - [ ] physics-teacher pretraining result
@@ -83,10 +88,14 @@ scripts/
   03_train_transfer.py
   04_generate_twin_dataset.py
   05_evaluate_paper_signal.py
+  06_build_audit_snapshot.py
+  07_validate_dual_impulse.py
+  08_build_teacher_dataset.py
 
 tests/
   test_characteristic_frequencies.py
   test_simulator_smoke.py
+  test_dual_impulse_kinematics.py
 
 reports/
   R1_R2_SIGNAL_VALIDATION_20260909.md
@@ -101,6 +110,9 @@ results/
 
 当前 R1/R2 报告：
 - [R1_R2_SIGNAL_VALIDATION_20260909.md](reports/R1_R2_SIGNAL_VALIDATION_20260909.md)
+- [Dual-impulse R2 audit](artifacts/audit_snapshots/20260909_dual_impulse_r2/README.md)
+- [PU Teacher pilot v1](artifacts/teacher_pilots/pu_6203_teacher_pilot_v1/README.md)
+- [Input / preprocessing audit](PREPROCESSING_AUDIT.md)
 
 可直接核验的代码生成产物：
 - [20260909_6203_r1r2 audit snapshot](artifacts/audit_snapshots/20260909_6203_r1r2/README.md)
