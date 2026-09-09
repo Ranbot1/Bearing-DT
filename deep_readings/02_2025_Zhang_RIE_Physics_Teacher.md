@@ -2,22 +2,22 @@
 
 ## 论文信息
 
-**Title**  
+**论文题目**  
 Failure mechanism-driven multi-adversarial domain transfer learning for rolling bearing fault diagnosis
 
-**Journal**  
+**期刊**  
 Results in Engineering, 27 (2025), 106165
 
 **DOI**  
 https://doi.org/10.1016/j.rineng.2025.106165
 
-**Open access**  
-Yes
+**开放获取**  
+是
 
 **代码**  
 截至 2026-09-09，未发现官方 GitHub。
 
-**Data availability**  
+**数据可用性**  
 论文写明 data available on request。
 
 ---
@@ -74,7 +74,7 @@ m\ddot{x}+c\dot{x}+kx=F_{contact}+F_{load}+F_{ecc}
 
 ---
 
-## 3. 仿真是否追求“像真实信号”？
+## 3. 仿真是否追求“像真实信号”
 
 这是本篇最关键的思想。
 
@@ -104,7 +104,7 @@ x_{sim}\neq x_{real}
 
 预训练网络使用 simulated vibration data。
 
-作者明确将它称为类似 **teacher** 的角色。
+作者明确将它称为类似 **Teacher** 的角色。
 
 Teacher 不直接参与最终真实故障分类，而是通过 knowledge loss 约束主网络/Student 的 feature representation。
 
@@ -203,47 +203,50 @@ Physics\ KD + Global\ DA + Conditional/Classwise\ DA
 ### PU — 6203
 
 论文给出：
-- outer diameter 40 mm
-- inner diameter 17 mm
-- width 12 mm
-- ball diameter 6.75 mm
-- pitch diameter 28.5 mm
-- balls 8
-- contact angle 0°
+
+- outer diameter 40 mm；
+- inner diameter 17 mm；
+- width 12 mm；
+- ball diameter 6.75 mm；
+- pitch diameter 28.5 mm；
+- balls 8；
+- contact angle 0°。
 
 ### HUST — ER-16K
 
 论文给出：
-- outer diameter 80 mm
-- inner diameter 38.52 mm
-- width 18 mm
-- ball diameter 7.94 mm
-- pitch diameter 54.4 mm
-- balls 9
-- contact angle 0°
+
+- outer diameter 80 mm；
+- inner diameter 38.52 mm；
+- width 18 mm；
+- ball diameter 7.94 mm；
+- pitch diameter 54.4 mm；
+- balls 9；
+- contact angle 0°。
 
 ---
 
 ## 8. 实验协议
 
-### Dataset 1 — Paderborn
+### 数据集 1 — Paderborn
 
-- bearing: 6203
-- sampling: 64 kHz
-- classes: Normal / Inner / Outer
-- source: Setting 0
-- target: Setting 3
+- bearing：6203
+- sampling：64 kHz
+- classes：Normal / Inner / Outer
+- source：Setting 0
+- target：Setting 3
 
 核心任务是跨 operating condition transfer。
 
-### Dataset 2 — HUST
+### 数据集 2 — HUST
 
-- bearing: ER-16K
-- sampling: 25.6 kHz
-- source speed: 20 Hz
-- target speed: 30 Hz
+- bearing：ER-16K
+- sampling：25.6 kHz
+- source speed：20 Hz
+- target speed：30 Hz
 
 7 classes：
+
 - Normal
 - Inner medium / severe
 - Ball medium / severe
@@ -310,7 +313,7 @@ unseen\ bearing
 cross\ machine
 \]
 
-所以它证明的是“physics teacher 对 DA 有帮助”，不是“teacher 只包含 fault mechanism”。
+所以它证明的是“physics teacher 对 DA 有帮助”，不是“Teacher 只包含 fault mechanism”。
 
 ---
 
@@ -318,9 +321,9 @@ cross\ machine
 
 这篇以后应该作为我们论文的**第一竞争基线**。
 
-我们的增量不能是换 backbone / 换 KD loss。
+我们的增量不能只是换 backbone / 换 KD loss。
 
-真正应该做：
+真正应该做的是：
 
 \[
 \boxed{
@@ -330,11 +333,11 @@ Teacher\ information\ intervention
 
 例如：
 
-- C: mechanism-only；
-- B: + machine/path；
-- A: + real-signal calibration。
+- C：mechanism-only；
+- B：+ machine/path；
+- A：+ real-signal calibration。
 
-并通过 bearing-isolated protocol 看泛化变化。
+然后通过 bearing-isolated protocol 看泛化变化。
 
 ---
 
