@@ -4,6 +4,20 @@
 
 ---
 
+## Artifact-retention rule
+
+Every accepted reproduction stage must retain enough generated evidence for independent audit:
+
+- generated signal data or a representative raw-data snapshot;
+- exact signal-processing tables behind reported peaks/metrics;
+- code-generated figures;
+- config/runtime snapshot;
+- file hashes/provenance.
+
+A Markdown-only claim is **not sufficient evidence** for stage acceptance.
+
+---
+
 ## R0 — Repository / reproducibility hygiene
 
 必须全部通过：
