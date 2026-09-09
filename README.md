@@ -6,15 +6,15 @@
 
 ## 当前关注问题
 
-我们特别关心一个区别：
+我们特别关心三种数字孪生路线之间的区别：
 
-- **Signal-faithful twin**：尽量让模拟信号接近真实信号；
-- **Full-physics twin**：显式建模轴承、支撑、壳体、传递路径等；
-- **Mechanism-only twin / physics teacher**：只保留故障机理及必要 causal context，尽量不引入 bearing ID / machine ID / sensor / transfer-path 等 nuisance cues。
+- **信号保真型 Twin（Signal-faithful twin）**：尽量让模拟信号接近真实信号；
+- **全物理型 Twin（Full-physics twin）**：显式建模轴承、支撑、壳体、传递路径等；
+- **机制保留型 Twin / Physics Teacher（Mechanism-only twin / physics teacher）**：只保留故障机理及必要 causal context，尽量不引入 bearing ID / machine ID / sensor / transfer-path 等 nuisance cues。
 
 核心科学问题：
 
-> Which information in a digital twin should be transferred to a bearing diagnostic model?
+> 数字孪生中的哪些信息，才真正应该被迁移到轴承诊断模型中？
 
 ## 核心论文索引
 
@@ -30,7 +30,7 @@
 | 2024 | [Inverse physics-informed neural networks for digital twin-based bearing fault diagnosis under imbalanced samples](papers/2024_Qin_KBS_InversePINN.md) | Knowledge-Based Systems | inverse PINN 参数辨识 + 数据生成 | 未发现官方代码 | B+ |
 | 2024 | [Digital twin-assisted dual transfer: A novel information-model adaptation method for rolling bearing fault diagnosis](deep_readings/03_2024_Li_InformationFusion_Dual_Transfer.md) | Information Fusion | DT 信息迁移 + 模型迁移 | 未发现官方代码 | **精读** |
 | 2025 | [A digital twin-enabled domain adaptation network for cross-space fault diagnosis of roller bearings](papers/2025_Fang_MSSP_DTDA.md) | MSSP | 多体动力学 + Sim2Real DA | 未发现官方代码 | B+ |
-| 2025 | [Failure mechanism-driven multi-adversarial domain transfer learning for rolling bearing fault diagnosis](papers/2025_Cui_RIE_PhysicsTeacher.md) | Results in Engineering | **4-DOF physics teacher + KD** | 未发现官方代码 | **A** |
+| 2025 | [Failure mechanism-driven multi-adversarial domain transfer learning for rolling bearing fault diagnosis](papers/2025_Cui_RIE_PhysicsTeacher.md) | Results in Engineering | **4-DOF Physics Teacher + KD** | 未发现官方代码 | **A** |
 | 2026 | [Elevating Interpretability in Bearing Fault Diagnosis: A Knowledge Distillation Framework Integrating Dynamic and Causal a Priori](papers/2026_Ding_TASE_DynamicCausalKD.md) | IEEE TASE | **dynamic prior + causal prior + KD** | 未发现官方代码 | B |
 | 2026 | [A digital twin guided physical-virtual denoising method for early fault detection](papers/2026_Qiao_MSSP_Denoising.md) | MSSP | DT 高保真模拟 + DeWGAN-GP | 未发现官方代码 | B |
 | 2026 | [Digital twin-enhanced framework for rolling bearings fault diagnosis under imbalanced and open-set conditions](papers/2026_Ming_MSSP_OpenSet.md) | MSSP | DT augmentation + open-set | 未发现官方代码 | B |
@@ -65,7 +65,7 @@
 ## 仓库原则
 
 1. 不把“模拟数据生成”自动等同于高保真数字孪生。
-2. 明确区分 **mechanism fidelity**、**signal fidelity** 与 **diagnostic transferability**。
+2. 明确区分 **机制保真度（mechanism fidelity）**、**信号保真度（signal fidelity）** 与 **诊断可迁移性（diagnostic transferability）**。
 3. 对每篇论文记录：物理模型、参数来源、缺陷建模、Twin 输出、虚实校准、下游网络、实验协议、局限。
 4. 代码只有在确认是作者/官方团队仓库时才标记为“官方开源”；第三方实现单独列出。
 5. 后续若实现论文模型，新增 `implementations/`，不直接修改论文笔记中的事实记录。
