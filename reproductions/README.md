@@ -28,3 +28,10 @@ reproductions/
 4. **No data leakage**：数据划分、标准化、窗口重叠都必须可审计。
 5. **Reproduction ≠ extension**：任何纠错、改进、严格协议都放到后续 `extensions/`。
 6. **可执行优先**：每篇复现都应有 smoke test、配置文件、固定随机种子和结果目录。
+
+
+## 当前第一篇复现
+
+- [2025 Results in Engineering — Failure mechanism-driven multi-adversarial domain transfer learning](2025_RIE_PhysicsTeacher/README.md)
+  - Status: `PARTIAL`
+  - Current gate: 4-DOF simulator / physics validation
