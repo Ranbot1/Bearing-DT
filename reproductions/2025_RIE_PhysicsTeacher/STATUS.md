@@ -47,6 +47,10 @@ R1 mechanism sanity is now accepted for:
 
 R2 is only a **partial pass**: the Fig.5 frequency-domain mechanism evidence is reproduced, but dual-impulse time morphology / amplitude / resonance fidelity are not yet accepted.
 
+The generated evidence used for this gate is now retained in:
+`artifacts/audit_snapshots/20260909_6203_r1r2/`
+so the signal values, spectra, figure, config, and hashes can be inspected independently.
+
 **Do not enable R3 Teacher pretraining until the three-class virtual dataset generator and per-class QA are completed.**
 
 ## Next coding milestone

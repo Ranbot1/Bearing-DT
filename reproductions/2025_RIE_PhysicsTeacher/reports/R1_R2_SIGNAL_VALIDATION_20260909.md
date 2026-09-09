@@ -210,7 +210,26 @@ f_{BPFO}^{theory}=76.3158\ \text{Hz}
 
 ---
 
-## 9. Next gate
+## 9. Retained verification artifacts
+
+The generated signal evidence behind this report is retained in:
+
+[artifacts/audit_snapshots/20260909_6203_r1r2](../artifacts/audit_snapshots/20260909_6203_r1r2/README.md)
+
+It contains:
+- generated normal / inner / outer signal checkpoints;
+- the full 0–500 Hz raw/envelope spectral table from the 64 kHz generated signals;
+- class metrics;
+- theoretical characteristic frequencies;
+- a code-generated SVG fault-frequency figure;
+- config and SHA-256 provenance;
+- hashes for the full-resolution NPZ arrays generated in the same run.
+
+This artifact directory is intended to make the numerical claims independently auditable.
+
+---
+
+## 10. Next gate
 
 在 Teacher pretraining 前继续做：
 

@@ -1,0 +1,33 @@
+{
+  "snapshot_id": "20260909_6203_r1r2",
+  "source_repo_commit": "80e59bceef75dcae37686d9f3743fc584f133963",
+  "base_config_sha256": "76675ae02cd335ad005b12a9ad73b4f73110a0e4fbd98bcdaa2db7754aeb9c74",
+  "full_resolution_generated_binaries_not_committed": [
+    {
+      "class": "normal",
+      "filename": "normal.npz",
+      "bytes": 741754,
+      "sha256": "2dda91464caf53bbc07748d2b303d79cd5e7d7cd853304e27cdfb6787a04034d"
+    },
+    {
+      "class": "inner",
+      "filename": "inner.npz",
+      "bytes": 783919,
+      "sha256": "e24ce351e2a7aefec565540c77b836cd507e7b0b97c0009fc9394ec50f02f9f0"
+    },
+    {
+      "class": "outer",
+      "filename": "outer.npz",
+      "bytes": 781676,
+      "sha256": "ba22c75d1132fd9dfcba8fde31ec101d9012d71f71cf4db7dcadba3c8f7abb7e"
+    }
+  ],
+  "generation_side_sha256_before_text_normalization": {
+    "data/signals_checkpoints.csv": "440bac05a83fbf72b8ad063ae04d28bd23d0d88373507763f55b8e5124f81f54",
+    "figures/fault_frequency_audit.svg": "d1e21bfa8090a7fb2d4b16b2ab835b2c31167b945c5c6643b40fb6df5e49e9ef",
+    "tables/spectra_0_500hz.csv": "17fdc977c91027e35e21ed0475c7845e94dbe05a3a2a28c7662b9945c642b128",
+    "tables/class_metrics.csv": "fb48a6145eb83a84c50c116d6dd1166a8e11e874b26a183d6162dd769927ad1b",
+    "tables/characteristic_frequencies.csv": "8c72f28c22b47eeb7166d771b6f270549ac503d4b89f2a594eb704c90201d2ee",
+    "config_snapshot.yaml": "76675ae02cd335ad005b12a9ad73b4f73110a0e4fbd98bcdaa2db7754aeb9c74"
+  }
+}

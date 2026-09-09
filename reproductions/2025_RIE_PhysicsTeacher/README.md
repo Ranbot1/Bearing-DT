@@ -102,6 +102,14 @@ results/
 当前 R1/R2 报告：
 - [R1_R2_SIGNAL_VALIDATION_20260909.md](reports/R1_R2_SIGNAL_VALIDATION_20260909.md)
 
+可直接核验的代码生成产物：
+- [20260909_6203_r1r2 audit snapshot](artifacts/audit_snapshots/20260909_6203_r1r2/README.md)
+  - generated signal checkpoints
+  - full 0–500 Hz spectral table
+  - per-class metrics
+  - generated SVG figure
+  - config + SHA-256 provenance
+
 见：
 - [REPRODUCTION_CONTRACT.md](REPRODUCTION_CONTRACT.md)
 - [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md)
