@@ -51,7 +51,8 @@ R2 is only a **partial pass**: the Fig.5 frequency-domain mechanism evidence is 
 
 ## Next coding milestone
 
-1. reproduce Fig. 5 inner-race simulation around 123.24 Hz;
-2. add normal / inner / outer virtual-dataset generator for PU;
-3. lock the exact network input/preprocessing from the paper;
-4. enable Teacher pretraining only after steps 1–3 pass.
+1. run the three-class generator for PU 6203 and save the manifest;
+2. run per-class frequency/mechanism QA on normal / inner / outer;
+3. verify the localized-spall dual-impulse time morphology against Fig. 4/Fig. 5;
+4. lock the exact network input/preprocessing from the paper;
+5. only then enable Teacher pretraining.
